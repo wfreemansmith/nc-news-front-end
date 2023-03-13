@@ -33,7 +33,7 @@ function CommentList() {
               <p className="comment-item__author"><strong>{comment.author}</strong> said:</p>
               <p className="comment-item__body">"{comment.body}"</p>
               <p className="comment-item__created_at">posted at {dateFormat(comment.created_at)}</p>
-              <p className="comment-item__votes">Likes: {comment.votes} <button>+</button></p>
+              <p className="comment-item__votes"><button>-</button> Likes: {comment.votes} <button>+</button></p>
             </li>
           );
         })}

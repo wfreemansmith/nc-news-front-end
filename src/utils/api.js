@@ -13,17 +13,19 @@ export const getArticles = (topic) => {
 };
 
 export const getArticleById = (article_id) => {
-  return api.get(`/articles/${article_id}`).then(({data}) => {
-    return data
-  })
-}
+  return api.get(`/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+};
 
 export const getUserByUsername = (username) => {
-  return api.get(`/users/${username}`).then(({data}) => {
-    return data
+  return api.get(`/users/${username}`).then(({ data }) => {
+    return data;
+  });
+};
 
 export const getCommentsByArticleId = (article_id) => {
-  return api.get(`articles/${article_id}/comments`).then(({data}) => {
+  return api.get(`articles/${article_id}/comments`).then(({ data }) => {
     return data;
-  })
-}
+  });
+};

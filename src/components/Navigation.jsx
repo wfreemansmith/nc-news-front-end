@@ -1,10 +1,13 @@
-import React from 'react'
+import React from "react";
 
-function Navigation({setTopic}) {
+function Navigation({ setTopic }) {
   return (
-    <div className='navigation'>
-      Placeholder: select topic dropdown + search/sort input</div>
-  )
+    <div className="navigation">
+      Topic: <select>
+        <option></option>
+      </select>
+    </div>
+  );
 }
 
-export default Navigation
+export default Navigation;

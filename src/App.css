@@ -3,6 +3,17 @@ html {
   background-color: #f5f5f7
 }
 
+/* #f5f5f7 */
+/* #ef9379 */
+/* #b56e8c */
+/* #5b92ef */
+/* #9f3025 */
+
+
+a {
+  color: black;
+}
+
 .App {
   text-align: center;
 }
@@ -18,8 +29,9 @@ html {
   list-style: none;
   padding: 0px;
   justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .article-list-item {
@@ -41,11 +53,11 @@ html {
 .single-article {
   display: flex;
   list-style: none;
-  padding: 0px;
-  justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .article-card {
@@ -96,7 +108,7 @@ margin-left: 10px;
   padding: 0px;
   justify-content: center;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .comment-item {

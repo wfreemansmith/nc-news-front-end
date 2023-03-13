@@ -10,13 +10,15 @@ function ArticleCard() {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticleById(article_id).then(({ article }) => {
-      setArticle(article);
-      getUserByUsername(article.author).then(({ user }) => {
+    getArticleById(article_id)
+      .then(({ article }) => {
+        setArticle(article);
+        return getUserByUsername(article.author);
+      })
+      .then(({ user }) => {
         setAuthor(user);
         setIsLoading(false);
       });
-    });
   }, [article_id]);
 
   if (isLoading) return <p>Loading...</p>;
@@ -35,8 +37,12 @@ function ArticleCard() {
           src={author.avatar_url}
           alt={`Avatar for author ${article.author}`}
         ></img>
-        <p className="article-card__author-name">By <strong>{article.author}</strong></p>
-        <p className="article-card__topic">in <strong>{article.topic}</strong></p>
+        <p className="article-card__author-name">
+          By <strong>{article.author}</strong>
+        </p>
+        <p className="article-card__topic">
+          in <strong>{article.topic}</strong>
+        </p>
       </div>
       <p>{article.body}</p>
     </div>
