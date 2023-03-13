@@ -30,12 +30,62 @@ html {
   padding: 14px;
   margin: 9px;
   border-color: #5b92ef;
-  width: 90v
+  width: 90vw
 
 }
 .article-list__img {
   width: 90vw;
   max-width: 600px
+}
+
+.single-article {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+}
+
+.article-card {
+  max-width: 800px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 17px;
+  padding: 14px;
+  margin: 9px;
+  border-color: #5b92ef;
+  width: 90vw
+}
+
+.article-card__img {
+  width: 100%;
+  max-width: 800px
+}
+
+.article-card__author {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+.article-card__author-avatar {
+  width: 50px;
+  height: 50px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #5b92ef;
+}
+
+.article-card__author-name {
+margin-left: 10px;
+}
+
+.article-card__topic {
+  margin-left: 10px;
 }
 
 @keyframes App-logo-spin {

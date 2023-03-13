@@ -1,9 +1,46 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getArticleById, getUserByUsername } from "../utils/api";
 
 function ArticleCard() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [article, setArticle] = useState([]);
+  const [author, setAuthor] = useState([]);
+  const { article_id } = useParams();
+
+  useEffect(() => {
+    setIsLoading(true);
+    getArticleById(article_id).then(({ article }) => {
+      setArticle(article);
+      getUserByUsername(article.author).then(({ user }) => {
+        setAuthor(user);
+        setIsLoading(false);
+      });
+    });
+  }, [article_id]);
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
-    <div>ArticleCard</div>
-  )
+    <div className="article-card">
+      <img
+        className="article-card__img"
+        src={article.article_img_url}
+        alt={article.title}
+      ></img>
+      <h2>{article.title}</h2>
+      <div className="article-card__author">
+        <img
+          className="article-card__author-avatar"
+          src={author.avatar_url}
+          alt={`Avatar for author ${article.author}`}
+        ></img>
+        <p className="article-card__author-name">By <strong>{article.author}</strong></p>
+        <p className="article-card__topic">in <strong>{article.topic}</strong></p>
+      </div>
+      <p>{article.body}</p>
+    </div>
+  );
 }
 
-export default ArticleCard
+export default ArticleCard;

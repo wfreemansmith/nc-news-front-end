@@ -8,7 +8,11 @@ import { useState } from 'react';
 
 function App() {
 const [topic, setTopic] = useState("")
-
+const [user, setUser] = useState({
+  "username": "tickle122",
+  "name": "Tom Tickle",
+  "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+})
 
   return (
     <div className="App">
