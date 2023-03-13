@@ -1,5 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap');
+html {
+  background-color: #f5f5f7
+}
+
 .App {
   text-align: center;
+}
+
+.header {
+  font-family: 'Rubik Iso', cursive;
+  font-size: 4em;
+  
+}
+
+.article-list {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.article-list-item {
+  max-width: 600px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 17px;
+  padding: 14px;
+  margin: 9px;
+  border-color: #5b92ef;
+  width: 90v
+
+}
+.article-list__img {
+  width: 90vw;
+  max-width: 600px
 }
 
 @keyframes App-logo-spin {
