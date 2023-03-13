@@ -12,3 +12,9 @@ const config = { params: { topic: topic } }
     return data;
   });
 };
+
+export const getCommentsByArticleId = (article_id) => {
+  return api.get(`articles/${article_id}/comments`).then(({data}) => {
+    return data;
+  })
+}
