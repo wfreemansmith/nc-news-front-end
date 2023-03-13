@@ -5,13 +5,22 @@ const api = axios.create({
 });
 
 export const getArticles = (topic) => {
-const config = { params: { topic: topic } }
-
+  const config = { params: { topic: topic } };
 
   return api.get(`/articles`, config).then(({ data }) => {
     return data;
   });
 };
+
+export const getArticleById = (article_id) => {
+  return api.get(`/articles/${article_id}`).then(({data}) => {
+    return data
+  })
+}
+
+export const getUserByUsername = (username) => {
+  return api.get(`/users/${username}`).then(({data}) => {
+    return data
 
 export const getCommentsByArticleId = (article_id) => {
   return api.get(`articles/${article_id}/comments`).then(({data}) => {
