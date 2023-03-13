@@ -21,5 +21,9 @@ export const getArticleById = (article_id) => {
 export const getUserByUsername = (username) => {
   return api.get(`/users/${username}`).then(({data}) => {
     return data
+
+export const getCommentsByArticleId = (article_id) => {
+  return api.get(`articles/${article_id}/comments`).then(({data}) => {
+    return data;
   })
 }

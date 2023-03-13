@@ -88,6 +88,28 @@ margin-left: 10px;
   margin-left: 10px;
 }
 
+/* Comment List */
+
+.comment-list {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.comment-item {
+  max-width: 600px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 17px;
+  padding: 14px;
+  margin: 9px;
+  border-color: #ef9379;
+  width: 90v
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
