@@ -26,14 +26,14 @@ function FrontPage({ topic }) {
           return (
             
             <li className="article-list-item" key={article.article_id}>
-            <Link to={`/articles/${article.article_id}`}>
-              <img
-                className="article-list__img"
-                src={article.article_img_url}
-                alt={`Image for the article ${article.title}`}
-              ></img>
-              <h2>{article.title}</h2>
-              </Link>  
+              <Link to={`/articles/${article.article_id}`}>
+                <img
+                  className="article-list__img"
+                  src={article.article_img_url}
+                  alt={`Image for the article ${article.title}`}
+                ></img>
+                <h2>{article.title}</h2>
+                </Link>  
               <p>
                 <em>author:</em> {article.author} <em> | category:</em>{" "}
                 {article.topic}
