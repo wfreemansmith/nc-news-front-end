@@ -2,11 +2,11 @@ import React from "react";
 
 function Navigation({ setTopic }) {
   return (
-    <div className="navigation">
+    <nav className="navigation">
       Topic: <select>
         <option></option>
       </select>
-    </div>
+    </nav>
   );
 }
 

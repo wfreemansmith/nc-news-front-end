@@ -29,3 +29,10 @@ export const getCommentsByArticleId = (article_id) => {
     return data;
   });
 };
+
+export const patchVote = (i, article_id) => {
+  const input = { "inc_votes": i}
+  return api.patch(`articles/${article_id}`, input).then(({data}) => {
+    return data
+  })
+}
