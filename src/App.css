@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap");
 html {
-  background-color: #f5f5f7
+  background-color: #f5f5f7;
 }
 
 /* #f5f5f7 */
@@ -8,7 +8,6 @@ html {
 /* #b56e8c */
 /* #5b92ef */
 /* #9f3025 */
-
 
 a {
   color: black;
@@ -19,7 +18,7 @@ a {
 }
 
 .header {
-  font-family: 'Rubik Iso', cursive;
+  font-family: "Rubik Iso", cursive;
   font-size: 4em;
 }
 
@@ -27,13 +26,22 @@ button {
   border-color: black;
   border-style: solid;
   font-weight: bold;
-    padding: 6px;
-    margin: 10px;
+  padding: 6px;
+  margin: 10px;
 }
 
 .error {
   color: red;
   border-color: red;
+}
+
+.success {
+  color: green;
+  border-color: forestgreen
+}
+
+.posting {
+  background-color: #f5f5f7
 }
 
 /* FrontPage */
@@ -56,12 +64,11 @@ button {
   padding: 14px;
   margin: 9px;
   border-color: #5b92ef;
-  width: 90vw
-
+  width: 90vw;
 }
 .article-list__img {
   width: 90vw;
-  max-width: 600px
+  max-width: 600px;
 }
 
 /* Single article */
@@ -84,12 +91,12 @@ button {
   padding: 14px;
   margin: 9px;
   border-color: #5b92ef;
-  width: 90vw
+  width: 90vw;
 }
 
 .article-card__img {
   width: 100%;
-  max-width: 800px
+  max-width: 800px;
 }
 
 .article-card__author {
@@ -109,7 +116,7 @@ button {
 }
 
 .article-card__author-name {
-margin-left: 10px;
+  margin-left: 10px;
 }
 
 .article-card__topic {
@@ -132,7 +139,30 @@ margin-left: 10px;
   width: 50px;
   height: 50px;
   font-size: 1.2em;
+
+/* Comments form */
+
+.comment-form {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  flex-wrap: wrap;
+  flex-direction: column;
   border-style: solid;
+  border-width: 2px;
+  border-radius: 17px;
+  border-color: #9f3025;
+  margin: 9px;
+  padding: 14px;
+}
+
+#comment-form__input {
+  width: 90vw;
+  height: 10vw;
+  max-width: 600px;
+  resize: vertical;
+border-style: solid;
+ 
 }
 
 /* Comment List */
@@ -154,7 +184,7 @@ margin-left: 10px;
   padding: 14px;
   margin: 9px;
   border-color: #ef9379;
-  width: 90v
+  width: 90v;
 }
 
 @keyframes App-logo-spin {
