@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { postComment } from "../utils/api";
 
 function CommentForm({ user, comments, setComments }) {
-  const [body, setBody] = useState("Comments!");
+  const [body, setBody] = useState("");
   const [validation, setValidation] = useState("valid");
   const { article_id } = useParams();
 

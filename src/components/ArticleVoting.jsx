@@ -27,13 +27,6 @@ function ArticleVoting({ article }) {
       });
   }
 
-  console.log(like);
-
-  // voteString += like
-  //   ? `You and ${votes} other`
-  //   : (voteString += votes ? votes : `No`);
-  // voteString += ` people like this article`;
-
   return (
     <section className="article-votes">
       <p>{voteString}</p>

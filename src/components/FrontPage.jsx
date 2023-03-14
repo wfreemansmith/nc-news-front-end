@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from 'react-router-dom';
 
-function FrontPage({ topic }) {
+function FrontPage() {
+  const {topic} = useParams()
   const [isLoading, setIsLoading] = useState(true);
   const [articleList, setArticleList] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
     getArticles(topic).then(({ articles }) => {
-      console.log(articles);
       setIsLoading(false);
       setArticleList(articles);
     });
@@ -22,7 +23,6 @@ function FrontPage({ topic }) {
       <p>Sorted by date in descending order</p>
       <ul className="article-list">
         {articleList.map((article) => {
-          console.log(article)
           return (
             
             <li className="article-list-item" key={article.article_id}>
@@ -32,7 +32,7 @@ function FrontPage({ topic }) {
                   src={article.article_img_url}
                   alt={`Image for the article ${article.title}`}
                 ></img>
-                <h2>{article.title}</h2>
+                <h3>{article.title}</h3>
                 </Link>  
               <p>
                 <em>author:</em> {article.author} <em> | category:</em>{" "}

@@ -17,10 +17,6 @@ a {
   text-align: center;
 }
 
-.header {
-  font-family: "Rubik Iso", cursive;
-  font-size: 4em;
-}
 
 button {
   border-color: black;
@@ -37,11 +33,31 @@ button {
 
 .success {
   color: green;
-  border-color: forestgreen
+  border-color: forestgreen;
 }
 
 .posting {
-  background-color: #f5f5f7
+  background-color: #f5f5f7;
+}
+
+/* Header & Navigation */
+.header {
+  font-family: "Rubik Iso", cursive;
+  font-size: 4em;
+  margin: 50px 0px 0px 0px;
+}
+
+.navigation__description {
+  margin: 0px 0px 20px 0px;
+}
+
+.navigation {
+  margin: 0px 0px 30px 0px;
+}
+
+.navigation__select {
+  margin: 9px;
+  padding: 4px
 }
 
 /* FrontPage */
@@ -139,6 +155,7 @@ button {
   width: 50px;
   height: 50px;
   font-size: 1.2em;
+}
 
 /* Comments form */
 
@@ -161,8 +178,7 @@ button {
   height: 10vw;
   max-width: 600px;
   resize: vertical;
-border-style: solid;
- 
+  border-style: solid;
 }
 
 /* Comment List */
