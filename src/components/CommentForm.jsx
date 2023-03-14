@@ -4,14 +4,14 @@ import { postComment } from "../utils/api";
 
 function CommentForm({ user, comments, setComments }) {
   const [body, setBody] = useState("Comments!");
-  const [validation, setValidation] = useState("working");
+  const [validation, setValidation] = useState("valid");
   const { article_id } = useParams();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!body.length) {
-      setValidation("error");
+      setValidation("error invalid");
       return;
     }
 
@@ -22,12 +22,15 @@ function CommentForm({ user, comments, setComments }) {
       body,
     };
 
-    postComment(input, article_id).then(({ comment }) => {
-      setComments([comment, ...comments]);
-      setValidation("success");
-      setBody("");
-    });
-
+    postComment(input, article_id)
+      .then(({ comment }) => {
+        setComments([comment, ...comments]);
+        setValidation("success");
+        setBody("");
+      })
+      .catch(() => {
+        setValidation("error other");
+      });
   };
 
   return (
@@ -40,13 +43,15 @@ function CommentForm({ user, comments, setComments }) {
         className={validation}
         value={body}
         onChange={(event) => {
-          setValidation("working");
+          setValidation("valid");
           setBody(event.target.value);
         }}
       ></textarea>
       <button className={validation} type="submit">
-        {validation === "error"
+        {validation === "error invalid"
           ? "Field cannot be blank"
+          : validation === "error other"
+          ? "Something went wrong"
           : validation === "posting"
           ? "Posting..."
           : validation === "success"
