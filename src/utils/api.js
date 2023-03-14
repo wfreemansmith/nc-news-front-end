@@ -29,3 +29,10 @@ export const getCommentsByArticleId = (article_id) => {
     return data;
   });
 };
+
+export const postComment = (input, article_id) => {
+  return api.post(`articles/${article_id}/comments`, input).then(({data}) => {
+    console.log({api: data})
+    return data;
+  })
+}
