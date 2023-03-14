@@ -1,13 +1,16 @@
+import { useState } from "react";
 import ArticleCard from "./ArticleCard";
 import CommentForm from './CommentForm';
 import CommentList from './CommentList'
 
-function Article() {
+function Article({user}) {
+// const [newComment, setNewComment] = useState({})
+
   return (
     <div className="single-article">
       <ArticleCard />
-      <CommentForm/>
-      <CommentList />
+      <CommentForm user={user}/>
+      <CommentList newComment={newComment}/>
     </div>
   );
 }

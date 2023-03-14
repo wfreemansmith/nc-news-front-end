@@ -20,7 +20,7 @@ const [user, setUser] = useState({
       <Navigation setTopic={setTopic}/>
       <Routes>
         <Route path='/' element={<FrontPage topic={topic}/>} />
-        <Route path='/articles/:article_id' element={<Article/>} />
+        <Route path='/articles/:article_id' element={<Article user={user}/>} />
         <Route path='/users/:username' element={<FrontPage/>} />
        </Routes>
     </div>

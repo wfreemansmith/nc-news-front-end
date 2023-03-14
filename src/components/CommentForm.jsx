@@ -2,7 +2,12 @@ import React from 'react'
 
 function CommentForm() {
   return (
-    <div>CommentForm</div>
+    <form onSubmit={() => {
+      submitHandler()
+    }}>
+      <textarea>Hello</textarea>
+      <button type="submit"></button>
+    </form>
   )
 }
 
