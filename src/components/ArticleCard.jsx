@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 
-function ArticleCard() {
-  const [isLoading, setIsLoading] = useState(true);
+function ArticleCard({isLoading, setIsLoading}) {
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState([]);
   const { article_id } = useParams();
@@ -23,7 +22,7 @@ function ArticleCard() {
   }, [article_id]);
 
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading article...</p>;
 
   return (
     <>
