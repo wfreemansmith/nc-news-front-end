@@ -21,8 +21,22 @@ a {
 .header {
   font-family: 'Rubik Iso', cursive;
   font-size: 4em;
-  
 }
+
+button {
+  border-color: black;
+  border-style: solid;
+  font-weight: bold;
+    padding: 6px;
+    margin: 10px;
+}
+
+.error {
+  color: red;
+  border-color: red;
+}
+
+/* FrontPage */
 
 .article-list {
   display: flex;
@@ -49,6 +63,8 @@ a {
   width: 90vw;
   max-width: 600px
 }
+
+/* Single article */
 
 .single-article {
   display: flex;
@@ -98,6 +114,25 @@ margin-left: 10px;
 
 .article-card__topic {
   margin-left: 10px;
+}
+
+.article-votes {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.article__like-button--false {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2em;
+  border-style: dashed;
+}
+
+.article__like-button--true {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2em;
+  border-style: solid;
 }
 
 /* Comment List */

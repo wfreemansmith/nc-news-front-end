@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
+import ArticleVoting from "./ArticleVoting";
 
 function ArticleCard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,31 +22,35 @@ function ArticleCard() {
       });
   }, [article_id]);
 
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="article-card">
-      <img
-        className="article-card__img"
-        src={article.article_img_url}
-        alt={article.title}
-      ></img>
-      <h2>{article.title}</h2>
-      <div className="article-card__author">
+    <>
+      <article className="article-card">
         <img
-          className="article-card__author-avatar"
-          src={author.avatar_url}
-          alt={`Avatar for author ${article.author}`}
+          className="article-card__img"
+          src={article.article_img_url}
+          alt={article.title}
         ></img>
-        <p className="article-card__author-name">
-          By <strong>{article.author}</strong>
-        </p>
-        <p className="article-card__topic">
-          in <strong>{article.topic}</strong>
-        </p>
-      </div>
-      <p>{article.body}</p>
-    </div>
+        <h2>{article.title}</h2>
+        <div className="article-card__author">
+          <img
+            className="article-card__author-avatar"
+            src={author.avatar_url}
+            alt={`Avatar for author ${article.author}`}
+          ></img>
+          <p className="article-card__author-name">
+            By <strong>{article.author}</strong>
+          </p>
+          <p className="article-card__topic">
+            in <strong>{article.topic}</strong>
+          </p>
+        </div>
+        <p>{article.body}</p>
+      </article>
+      <ArticleVoting article={article}/>
+    </>
   );
 }
 
