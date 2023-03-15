@@ -11,7 +11,40 @@ html {
 
 a {
   color: black;
+  font-weight: bold;
 }
+
+.topic-link {
+background-color: #5b92ef;
+border-radius: 30px;
+margin: 5px;
+padding: 5px;
+}
+
+.topic-link:hover {
+  background-color: #b56e8c;
+  color: white
+  }
+
+  .topic-link:active {
+    background-color: #b56e8c;
+    color: white
+    }
+
+.user-link {
+  background-color:#ef9379;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 5px;
+  }
+
+  .user-link:hover {
+    background-color: #9f3025
+  }
+
+  .user-link:active {
+    background-color: #9f3025
+  }
 
 .App {
   text-align: center;
