@@ -43,6 +43,13 @@ export const patchVote = (i, article_id) => {
   })
 };
 
+export const patchCommentVote = (i, comment_id) => {
+  const input = { "inc_votes": i}
+  return api.patch(`comments/${comment_id}`, input).then(({data}) => {
+    return data
+  })
+}
+
 export const getTopics = () => {
   return api.get(`topics`).then(({data}) => {
     return data
