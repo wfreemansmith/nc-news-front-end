@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 
@@ -40,10 +40,10 @@ function ArticleCard({isLoading, setIsLoading}) {
             alt={`Avatar for author ${article.author}`}
           ></img>
           <p className="article-card__author-name">
-            By <strong>{article.author}</strong>
+            By {article.author}
           </p>
           <p className="article-card__topic">
-            in <strong>{article.topic}</strong>
+            in <Link to={`/${article.topic}`} className="topic-link">{article.topic}</Link>
           </p>
         </div>
         <p>{article.body}</p>
