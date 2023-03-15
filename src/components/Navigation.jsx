@@ -2,27 +2,28 @@ import { useNavigate } from "react-router-dom";
 
 function Navigation({ topicList, setDescription, description }) {
   const navigate = useNavigate();
-  
+
   const handleChange = (slug) => {
     navigate(`/${slug}`);
     setDescription(
       topicList.find((topicItem) => topicItem.slug === slug).description
     );
   };
-  
 
   return (
     <>
       <h2 className="navigation__description">{description}</h2>
       <nav className="navigation">
-        Topic:
+        <label htmlFor="navigation-menu">Topic:</label>
         <select
+          id="navigation-menu"
           className="navigation__select"
-          value={""}
+          value={"Topic"}
           onChange={(event) => {
             handleChange(event.target.value);
           }}
-        ><option key="blank"></option>
+        >
+          <option value="/"></option>
           {topicList.map((topic) => {
             return <option key={topic.slug}> {topic.slug}</option>;
           })}
