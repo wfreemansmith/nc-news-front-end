@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
+import User from "./components/User";
 import { getTopics } from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -49,7 +50,7 @@ function App() {
             />
           }
         />
-        <Route path="/users/:username" element={<FrontPage />} />
+        <Route path="/users/:username" element={<User />} />
         <Route
           path="/:topic"
           element={

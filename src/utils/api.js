@@ -4,8 +4,8 @@ const api = axios.create({
   baseURL: "https://backend-project-nc-news.onrender.com/api",
 });
 
-export const getArticles = (topic) => {
-  const config = { params: { topic: topic } };
+export const getArticles = (topic, sort_by, order, author) => {
+  const config = { params: { topic, sort_by, order, author } };
 
   return api.get(`/articles`, config).then(({ data }) => {
     return data;
