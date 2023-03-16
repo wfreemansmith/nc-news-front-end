@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
 
-function FrontPage() {
+function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [articleList, setArticleList] = useState([]);
@@ -51,7 +51,10 @@ function FrontPage() {
         <select
           value={order}
           onChange={(event) => {
-            setSearchParams({ sort_by, order: event.target.value });
+            setSearchParams({
+              sort_by: sort_by || "created_at",
+              order: event.target.value,
+            });
           }}
         >
           <option value="desc">descending</option>
@@ -73,7 +76,12 @@ function FrontPage() {
                 <h3>{article.title}</h3>
               </Link>
 
-              <p>author:{article.author}</p>
+              <p>
+                author:
+                <Link to={`/users/${article.author}`} className="user-link">
+                  {article.author}
+                </Link>
+              </p>
               {topic !== article.topic ? (
                 <p>
                   category:

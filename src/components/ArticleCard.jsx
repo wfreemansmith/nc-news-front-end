@@ -40,7 +40,7 @@ function ArticleCard({isLoading, setIsLoading}) {
             alt={`Avatar for author ${article.author}`}
           ></img>
           <p className="article-card__author-name">
-            By {article.author}
+            By <Link to={`/users/${article.author}`} className="user-link">{article.author}</Link>
           </p>
           <p className="article-card__topic">
             in <Link to={`/${article.topic}`} className="topic-link">{article.topic}</Link>

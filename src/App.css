@@ -39,11 +39,13 @@ padding: 5px;
   }
 
   .user-link:hover {
-    background-color: #9f3025
+    background-color: #9f3025;
+    color: white
   }
 
   .user-link:active {
-    background-color: #9f3025
+    background-color: #9f3025;
+    color: white
   }
 
 .App {
@@ -270,7 +272,8 @@ button {
 }
 
 .user-profile__profile-pic {
-  max-width: 200px
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .user-profile__article-list {
