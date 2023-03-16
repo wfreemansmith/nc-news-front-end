@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
+import ErrorHandling from "./components/ErrorHandling";
 import { getTopics } from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -11,6 +12,8 @@ import { useState, useEffect } from "react";
 function App() {
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
+  const [errMsg, setErrMsg] = useState(null);
+  const [errCode, setErrCode] = useState(null);
   const [user, setUser] = useState({
     username: "tickle122",
     name: "Tom Tickle",
@@ -19,45 +22,76 @@ function App() {
   });
 
   useEffect(() => {
-    getTopics().then(({ topics }) => {
-      setTopicList([...topics]);
-    });
+    getTopics()
+      .then(({ topics }) => {
+        setTopicList([...topics]);
+      })
+      .catch((err) => {
+        setErrCode(err.response.status);
+        setErrMsg(err.response.data.msg);
+      });
   }, []);
+
+  console.log({ "error codes in app": { errCode, errMsg } });
 
   return (
     <div className="App">
-      <Header />
+      <Header setErrCode={setErrCode} setErrMsg={setErrMsg} />
       <Navigation
-        setTopicList={setTopicList}
         topicList={topicList}
         setDescription={setDescription}
         description={description}
+        setErrCode={setErrCode}
+        setErrMsg={setErrMsg}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <FrontPage setDescription={setDescription} />
-          }
-        />
-        <Route
-          path="/articles/:article_id"
-          element={
-            <Article
-              user={user}
-              topicList={topicList}
-              setDescription={setDescription}
+
+      {errCode ? (
+        <ErrorHandling errCode={errCode} errMsg={errMsg} />
+      ) : (
+        <>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <FrontPage
+                  setDescription={setDescription}
+                  setErrCode={setErrCode}
+                  setErrMsg={setErrMsg}
+                />
+              }
             />
-          }
-        />
-        <Route path="/users/:username" element={<User />} />
-        <Route
-          path="/:topic"
-          element={
-            <FrontPage topicList={topicList} setDescription={setDescription} />
-          }
-        />
-      </Routes>
+            <Route
+              path="/articles/:article_id"
+              element={
+                <Article
+                  user={user}
+                  setErrCode={setErrCode}
+                  setErrMsg={setErrMsg}
+                />
+              }
+            />
+            <Route
+              path="/users/:username"
+              element={<User setErrCode={setErrCode} setErrMsg={setErrMsg} />}
+            />
+            <Route
+              path="/topics/:topic"
+              element={
+                <FrontPage
+                  topicList={topicList}
+                  setDescription={setDescription}
+                  setErrCode={setErrCode}
+                  setErrMsg={setErrMsg}
+                />
+              }
+            />
+            <Route
+              path="*"
+              element={<ErrorHandling errCode={errCode} errMsg={errMsg} />}
+            />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }

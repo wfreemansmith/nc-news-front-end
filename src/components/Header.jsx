@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({setErrCode, setErrMsg}) {
+
+  const returnHome = () => {
+    setErrCode(null)
+    setErrMsg(null)
+  }
   return (
-    <Link to="/">
-      <h1 className="header">THE NEWS</h1>
-    </Link>
+    <header className="header"><Link to="/" onClick={() => {
+     returnHome() 
+    }}>
+      <h1 className="header-text">THE NEWS</h1>
+    </Link></header>
   );
 }
 

@@ -3,7 +3,12 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
 
-function FrontPage({ topicList, setDescription }) {
+function FrontPage({
+  topicList,
+  setDescription,
+  setErrCode,
+  setErrMsg,
+}) {
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [articleList, setArticleList] = useState([]);
@@ -13,18 +18,26 @@ function FrontPage({ topicList, setDescription }) {
   const order = searchParams.get("order");
 
   useEffect(() => {
+    setErrCode(null);
     setIsLoading(true);
-    getArticles(
-      topic,
-      searchParams.get("sort_by"),
-      searchParams.get("order")
-    ).then(({ articles }) => {
-      setIsLoading(false);
-      setArticleList(articles);
-      setDescription(
-        topic ? topicList.find((item) => item.slug === topic).description : ""
-      );
-    });
+    getArticles(topic, searchParams.get("sort_by"), searchParams.get("order"))
+      .then(({ articles }) => {
+        setIsLoading(false);
+        setArticleList(articles);
+        console.log({ topicList });
+        console.log({ topic });
+        setDescription(
+          topic && topicList.length
+            ? topicList.find((item) => item.slug === topic).description
+            : ""
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrCode(err.response.status);
+        setErrMsg(err.response.data.msg);
+        setIsLoading(false);
+      });
   }, [topic, searchParams]);
 
   if (isLoading) return <p>Loading...</p>;
@@ -34,7 +47,7 @@ function FrontPage({ topicList, setDescription }) {
       <section className="query-bar">
         Sorted by{" "}
         <select
-          value={sort_by}
+          value={sort_by || ""}
           onChange={(event) => {
             setSearchParams({
               sort_by: event.target.value,
@@ -49,7 +62,7 @@ function FrontPage({ topicList, setDescription }) {
         </select>{" "}
         in{" "}
         <select
-          value={order}
+          value={order || ""}
           onChange={(event) => {
             setSearchParams({
               sort_by: sort_by || "created_at",
@@ -85,7 +98,7 @@ function FrontPage({ topicList, setDescription }) {
               {topic !== article.topic ? (
                 <p>
                   category:
-                  <Link to={`/${article.topic}`} className="topic-link">
+                  <Link to={`/topics/${article.topic}`} className="topic-link">
                     {article.topic}
                   </Link>
                 </p>

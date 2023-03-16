@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 
-function ArticleCard({isLoading, setIsLoading}) {
+function ArticleCard({isLoading, setIsLoading, setErrMsg, setErrCode}) {
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState([]);
   const { article_id } = useParams();
@@ -18,6 +18,10 @@ function ArticleCard({isLoading, setIsLoading}) {
       .then(({ user }) => {
         setAuthor(user);
         setIsLoading(false);
+      }).catch((err) => {
+        setErrCode(err.response.status)
+        setErrMsg(err.response.data.msg)
+        setIsLoading(false)
       });
   }, [article_id]);
 
@@ -27,11 +31,11 @@ function ArticleCard({isLoading, setIsLoading}) {
   return (
     <>
       <article className="article-card">
-        <img
+      <Link to={`/users/${article.author}`}><img
           className="article-card__img"
           src={article.article_img_url}
           alt={article.title}
-        ></img>
+        ></img></Link>
         <h2>{article.title}</h2>
         <div className="article-card__author">
           <img
@@ -43,7 +47,7 @@ function ArticleCard({isLoading, setIsLoading}) {
             By <Link to={`/users/${article.author}`} className="user-link">{article.author}</Link>
           </p>
           <p className="article-card__topic">
-            in <Link to={`/${article.topic}`} className="topic-link">{article.topic}</Link>
+            in <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
           </p>
         </div>
         <p>{article.body}</p>

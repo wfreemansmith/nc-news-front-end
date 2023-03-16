@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { getCommentsByArticleId } from "../utils/api";
 
 import CommentVoting from "./CommentVoting";
@@ -7,7 +7,6 @@ import CommentDelete from "./CommentDelete";
 
 function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
   const { article_id } = useParams();
-  
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,8 +23,6 @@ function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
     return date.toDateString();
   }
 
-
-
   return (
     <div>
       <h3>Comments:</h3>
@@ -41,7 +38,13 @@ function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
                 posted at {dateFormat(comment.created_at)}
               </p>
               <CommentVoting comment={comment} />
-              {user.username === comment.author ? <CommentDelete thisComment={comment} setComments={setComments} comments={comments}/> : (
+              {user.username === comment.author ? (
+                <CommentDelete
+                  thisComment={comment}
+                  setComments={setComments}
+                  comments={comments}
+                />
+              ) : (
                 <></>
               )}
             </li>

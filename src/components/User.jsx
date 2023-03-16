@@ -2,7 +2,7 @@ import { getArticles, getUserByUsername } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function User() {
+function User({setErrCode, setErrMsg}) {
   const { username } = useParams();
   const [author, setAuthor] = useState({});
   const [articleList, setArticleList] = useState([]);
@@ -17,9 +17,12 @@ function User() {
         return getArticles(null, null, null, user.username);
       })
       .then(({ articles }) => {
-        console.log(articles)
         setArticleList(articles);
         setIsLoading(false);
+      }).catch((err) => {
+        setErrCode(err.response.status)
+        setErrMsg(err.response.data.msg)
+        setIsLoading(false)
       })
   }, [username]);
 
@@ -48,7 +51,7 @@ function User() {
                 </Link>
                 <p>
                   category:
-                  <Link to={`/${article.topic}`} className="topic-link">
+                  <Link to={`/topics/${article.topic}`} className="topic-link">
                     {article.topic}
                   </Link>
                 </p>

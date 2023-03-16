@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-function Navigation({ topicList, setDescription, description }) {
+function Navigation({ topicList, setDescription, description, setErrCode, setErrMsg }) {
   const navigate = useNavigate();
 
   const handleChange = (slug) => {
-    navigate(`/${slug}`);
+    navigate(`/topics/${slug}`);
     setDescription(
       topicList.find((topicItem) => topicItem.slug === slug).description
     );
+    setErrCode(null);
+    setErrMsg(null);
   };
+
 
   return (
     <>

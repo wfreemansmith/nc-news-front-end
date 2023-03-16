@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&display=swap');
+
 html {
   background-color: #f5f5f7;
 }
@@ -14,44 +16,56 @@ a {
   font-weight: bold;
 }
 
+h2 {
+  font-family: 'Bungee', cursive;
+  font-size: 4.5vmin;
+}
+
+
 .topic-link {
-background-color: #5b92ef;
-border-radius: 30px;
-margin: 5px;
-padding: 5px;
+  font-family: 'Bungee', cursive;
+  font-weight: normal;
+  background-color: #5b92ef;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .topic-link:hover {
   background-color: #b56e8c;
-  color: white
-  }
+  color: white;
+}
 
-  .topic-link:active {
-    background-color: #b56e8c;
-    color: white
-    }
+.topic-link:active {
+  background-color: #b56e8c;
+  color: white;
+}
 
 .user-link {
-  background-color:#ef9379;
+  font-family: 'Bungee', cursive;
+  font-weight: normal;
+  background-color: #ef9379;
   border-radius: 30px;
   margin: 5px;
   padding: 5px;
-  }
+}
 
-  .user-link:hover {
-    background-color: #9f3025;
-    color: white
-  }
+.user-link:hover {
+  background-color: #9f3025;
+  color: white;
+}
 
-  .user-link:active {
-    background-color: #9f3025;
-    color: white
-  }
+.user-link:active {
+  background-color: #9f3025;
+  color: white;
+}
 
 .App {
   text-align: center;
+  border-color: black;
+  border-style: solid;
+  border-width: 3px;
 }
-
 
 button {
   border-color: black;
@@ -75,15 +89,21 @@ button {
   background-color: #f5f5f7;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Header & Navigation */
-.header {
-  font-family: "Rubik Iso", cursive;
-  font-size: 4em;
-  margin: 50px 0px 0px 0px;
+.header-text {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 15vmin;
+  text-decoration: overline;
+  margin: 40px 0px 0px 0px;
 }
 
 .navigation__description {
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 25px 0px;
+  line-height: 1em;
 }
 
 .navigation {
@@ -92,7 +112,7 @@ button {
 
 .navigation__select {
   margin: 9px;
-  padding: 4px
+  padding: 4px;
 }
 
 /* FrontPage */
@@ -110,11 +130,9 @@ button {
 .article-list-item {
   max-width: 600px;
   border-style: solid;
-  border-width: 2px;
   border-radius: 17px;
   padding: 14px;
   margin: 9px;
-  border-color: #5b92ef;
   width: 90vw;
 }
 .article-list__img {
@@ -137,11 +155,9 @@ button {
 .article-card {
   max-width: 800px;
   border-style: solid;
-  border-width: 2px;
   border-radius: 17px;
   padding: 14px;
   margin: 9px;
-  border-color: #5b92ef;
   width: 90vw;
 }
 
@@ -159,11 +175,15 @@ button {
 }
 
 .article-card__author-avatar {
-  width: 50px;
-  height: 50px;
-  border-width: 1px;
+  max-width: 50px;
+  max-height: 50px;
+  border-color: black;
+  border-width: 2px;
   border-style: solid;
-  border-color: #5b92ef;
+}
+
+.article-card__author-avatar:hover {
+border-color: #9f3025;
 }
 
 .article-card__author-name {
@@ -203,7 +223,6 @@ button {
   border-style: solid;
   border-width: 2px;
   border-radius: 17px;
-  border-color: #9f3025;
   margin: 9px;
   padding: 14px;
 }
@@ -234,7 +253,6 @@ button {
   border-radius: 17px;
   padding: 14px;
   margin: 9px;
-  border-color: #ef9379;
   width: 90v;
 }
 
@@ -246,20 +264,20 @@ button {
 }
 
 .comment-list__vote-button--false {
-    width: 30px;
-    height: 30px;
-    padding: 0px;
-    font-size: 1em;
-    border-style: dashed;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  font-size: 1em;
+  border-style: dashed;
 }
 
 /* User profile */
 
 .user-profile {
   display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    align-items: center;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
 }
 
 .user-profile__user-info {
@@ -268,12 +286,14 @@ button {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 600px;
 }
 
 .user-profile__profile-pic {
   max-width: 200px;
   max-height: 200px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .user-profile__article-list {
@@ -284,6 +304,22 @@ button {
   align-content: center;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+/* Error handling */
+
+.err-code {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 23vmin;
+  font-weight: bold;
+  margin: 0px;
+  line-height: 1.5;
+}
+
+.err-msg {
+  font-family: 'Bungee', cursive;
+  font-size: 4.5vmin;
+  margin: 0px;
 }
 
 @keyframes App-logo-spin {
