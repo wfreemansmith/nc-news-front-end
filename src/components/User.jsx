@@ -27,13 +27,14 @@ function User() {
 
   return (
     <>
-      <div>
-        <img src={author.avatar_url} alt={author.name}></img>
+      <div className="user-profile">
+        <section className="user-profile__user-info">
+        <img src={author.avatar_url} alt={author.name} className="user-profile__profile-pic"></img>
         <h3>{author.name}</h3>
         <p>{author.username}</p>
-      </div>
-      <div>
-        <ul className="article-list">
+      </section>
+      <section>
+        <ul className="user-profile__article-list">
           {articleList.map((article) => {
             return (
               <li className="article-list-item" key={article.article_id}>
@@ -57,7 +58,8 @@ function User() {
             );
           })}
         </ul>
-      </div>
+      </section>
+          </div>
     </>
   );
 }

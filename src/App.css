@@ -251,6 +251,38 @@ button {
     border-style: dashed;
 }
 
+/* User profile */
+
+.user-profile {
+  display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.user-profile__user-info {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 600px;
+}
+
+.user-profile__profile-pic {
+  max-width: 200px
+}
+
+.user-profile__article-list {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
