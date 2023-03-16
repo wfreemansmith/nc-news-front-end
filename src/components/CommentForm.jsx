@@ -17,7 +17,7 @@ function CommentForm({ user, comments, setComments, isLoading}) {
       return;
     }
 
-    setValidation("posting");
+    setValidation("in-progress");
 
     const input = {
       username: user.username,
@@ -54,7 +54,7 @@ function CommentForm({ user, comments, setComments, isLoading}) {
           ? "Field cannot be blank"
           : validation === "error other"
           ? "Something went wrong"
-          : validation === "posting"
+          : validation === "in-progress"
           ? "Posting..."
           : validation === "success"
           ? "Success!"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { patchCommentVote } from "../utils/api";
 
 function CommentVoting({ comment }) {

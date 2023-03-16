@@ -50,6 +50,10 @@ export const patchCommentVote = (i, comment_id) => {
   })
 }
 
+export const deleteComment = (comment_id) => {
+  return api.delete(`comments/${comment_id}`)
+}
+
 export const getTopics = () => {
   return api.get(`topics`).then(({data}) => {
     return data

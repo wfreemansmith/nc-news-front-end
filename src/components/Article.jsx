@@ -11,7 +11,7 @@ function Article({ user }) {
     <div className="single-article">
       <ArticleCard isLoading={isLoading} setIsLoading={setIsLoading}/>
       <CommentForm user={user} comments={comments} setComments={setComments} isLoading={isLoading} setIsLoading={setIsLoading} />
-      <CommentList comments={comments} setComments={setComments} isLoading={isLoading} setIsLoading={setIsLoading}/>
+      <CommentList comments={comments} setComments={setComments} isLoading={isLoading} setIsLoading={setIsLoading} user={user}/>
     </div>
   );
 }
