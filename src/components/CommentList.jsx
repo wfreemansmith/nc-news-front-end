@@ -29,7 +29,7 @@ function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
       <ul className="comment-list">
         {comments.map((comment) => {
           return (
-            <li className="comment-item" key={comment.comment_id}>
+            <li className="small-item" key={comment.comment_id}>
               <p className="comment-item__author">
                 <strong>{comment.author}</strong> said:
               </p>

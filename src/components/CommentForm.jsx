@@ -36,7 +36,7 @@ function CommentForm({ user, comments, setComments, isLoading}) {
   };
 
   return (
-    <form className="comment-form" onSubmit={handleSubmit}>
+    <form className="small-item comment-form" onSubmit={handleSubmit}>
       <label htmlFor="comment-form__input">
         Commenting as <strong>{user.username}</strong>
       </label>

@@ -1,6 +1,11 @@
-function ErrorHandling({ errCode, errMsg }) {
+import { useLocation } from "react-router-dom";
 
-  console.log({ errCode, errMsg });
+function ErrorHandling() {
+  const location = useLocation()
+
+  const errCode = location.state.errCode
+  const errMsg = location.state.errMsg
+
   return (
     <div>
       {errCode ? (

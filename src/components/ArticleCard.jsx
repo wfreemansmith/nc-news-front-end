@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 
-function ArticleCard({isLoading, setIsLoading, setErrMsg, setErrCode}) {
+function ArticleCard({isLoading, setIsLoading}) {
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState([]);
+  const [errCode, setErrCode] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
   const { article_id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,22 +26,23 @@ function ArticleCard({isLoading, setIsLoading, setErrMsg, setErrCode}) {
       }).catch((err) => {
         setErrCode(err.response.status)
         setErrMsg(err.response.data.msg)
-        setIsLoading(false)
       });
   }, [article_id]);
 
-
+  if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <p>Loading article...</p>;
 
   return (
     <>
-      <article className="article-card">
+      <section>
       <Link to={`/users/${article.author}`}><img
           className="article-card__img"
           src={article.article_img_url}
           alt={article.title}
         ></img></Link>
-        <h2>{article.title}</h2>
+        <h2 className="article-card__title">{article.title}</h2>
+        </section>
+        <body  className="article-card">
         <div className="article-card__author">
           <img
             className="article-card__author-avatar"
@@ -51,7 +57,8 @@ function ArticleCard({isLoading, setIsLoading, setErrMsg, setErrCode}) {
           </p>
         </div>
         <p>{article.body}</p>
-      </article>
+        </body>
+      
       <ArticleVoting article={article}/>
     </>
   );

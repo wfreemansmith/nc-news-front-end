@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function Navigation({ topicList, setDescription, description, setErrCode, setErrMsg }) {
+function Navigation({ topicList, setDescription, description }) {
   const navigate = useNavigate();
 
   const handleChange = (slug) => {
@@ -8,8 +8,6 @@ function Navigation({ topicList, setDescription, description, setErrCode, setErr
     setDescription(
       topicList.find((topicItem) => topicItem.slug === slug).description
     );
-    setErrCode(null);
-    setErrMsg(null);
   };
 
 

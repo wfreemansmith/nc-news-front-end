@@ -30,7 +30,7 @@ function ArticleVoting({ article }) {
 
   return (
     <section className="article-votes">
-      <p>{voteString}</p>
+      <h3>{voteString}</h3>
       <button
         className={`${validation} ${
           like ? `article__like-button--true` : `article__like-button--false`

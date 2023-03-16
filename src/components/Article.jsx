@@ -3,18 +3,13 @@ import ArticleCard from "./ArticleCard";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 
-function Article({ user, setErrCode, setErrMsg }) {
+function Article({ user }) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div className="single-article">
-      <ArticleCard
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        setErrCode={setErrCode}
-        setErrMsg={setErrMsg}
-      />
+      <ArticleCard isLoading={isLoading} setIsLoading={setIsLoading} />
       <CommentForm
         user={user}
         comments={comments}

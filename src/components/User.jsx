@@ -1,18 +1,22 @@
 import { getArticles, getUserByUsername } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function User({setErrCode, setErrMsg}) {
+function User() {
   const { username } = useParams();
   const [author, setAuthor] = useState({});
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errCode, setErrCode] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
     getUserByUsername(username)
       .then(({ user }) => {
-        console.log(user);
         setAuthor(user);
         return getArticles(null, null, null, user.username);
       })
@@ -22,11 +26,11 @@ function User({setErrCode, setErrMsg}) {
       }).catch((err) => {
         setErrCode(err.response.status)
         setErrMsg(err.response.data.msg)
-        setIsLoading(false)
       })
   }, [username]);
 
-  if (isLoading) return;
+  if (errCode) navigate("/error", { state: { errCode, errMsg } });
+  if (isLoading) return <p>Loading user profile...</p>;
 
   return (
     <>
@@ -40,7 +44,7 @@ function User({setErrCode, setErrMsg}) {
         <ul className="user-profile__article-list">
           {articleList.map((article) => {
             return (
-              <li className="article-list-item" key={article.article_id}>
+              <li className="article-list-item small-item" key={article.article_id}>
                 <Link to={`/articles/${article.article_id}`}>
                   <img
                     className="article-list__img link--no-padding"

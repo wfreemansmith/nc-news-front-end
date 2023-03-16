@@ -1,31 +1,28 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
 
-function FrontPage({
-  topicList,
-  setDescription,
-  setErrCode,
-  setErrMsg,
-}) {
+function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
   const [articleList, setArticleList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [errCode, setErrCode] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
 
+  const navigate = useNavigate();
+  
   const sort_by = searchParams.get("sort_by");
   const order = searchParams.get("order");
 
   useEffect(() => {
-    setErrCode(null);
     setIsLoading(true);
     getArticles(topic, searchParams.get("sort_by"), searchParams.get("order"))
       .then(({ articles }) => {
         setIsLoading(false);
         setArticleList(articles);
-        console.log({ topicList });
-        console.log({ topic });
         setDescription(
           topic && topicList.length
             ? topicList.find((item) => item.slug === topic).description
@@ -33,13 +30,13 @@ function FrontPage({
         );
       })
       .catch((err) => {
-        console.log(err);
         setErrCode(err.response.status);
         setErrMsg(err.response.data.msg);
-        setIsLoading(false);
+        // setIsLoading(false);
       });
   }, [topic, searchParams]);
 
+  if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -79,7 +76,7 @@ function FrontPage({
       <ul className="article-list">
         {articleList.map((article) => {
           return (
-            <li className="article-list-item" key={article.article_id}>
+            <li className="small-item" key={article.article_id}>
               <Link to={`/articles/${article.article_id}`}>
                 <img
                   className="article-list__img link--no-padding"
