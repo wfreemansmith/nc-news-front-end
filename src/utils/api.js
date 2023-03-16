@@ -4,9 +4,8 @@ const api = axios.create({
   baseURL: "https://backend-project-nc-news.onrender.com/api",
 });
 
-export const getArticles = (topic, sort_by, order) => {
-  // Sort by: "title", "topic", "author", "body", "created_at"
-  const config = { params: { topic, sort_by, order } };
+export const getArticles = (topic, sort_by, order, author) => {
+  const config = { params: { topic, sort_by, order, author } };
 
   return api.get(`/articles`, config).then(({ data }) => {
     return data;
@@ -43,6 +42,13 @@ export const patchVote = (i, article_id) => {
     return data
   })
 };
+
+export const patchCommentVote = (i, comment_id) => {
+  const input = { "inc_votes": i}
+  return api.patch(`comments/${comment_id}`, input).then(({data}) => {
+    return data
+  })
+}
 
 export const getTopics = () => {
   return api.get(`topics`).then(({data}) => {

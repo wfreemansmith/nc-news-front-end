@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../utils/api";
+import CommentVoting from "./CommentVoting";
 
 function CommentList({comments, setComments, isLoading, setIsLoading}) {
   const { article_id } = useParams();
@@ -30,7 +31,7 @@ function CommentList({comments, setComments, isLoading, setIsLoading}) {
               <p className="comment-item__author"><strong>{comment.author}</strong> said:</p>
               <p className="comment-item__body">"{comment.body}"</p>
               <p className="comment-item__created_at">posted at {dateFormat(comment.created_at)}</p>
-              <p className="comment-item__votes"><button>-</button> Likes: {comment.votes} <button>+</button></p>
+              <CommentVoting comment={comment}/>
             </li>
           );
         })}

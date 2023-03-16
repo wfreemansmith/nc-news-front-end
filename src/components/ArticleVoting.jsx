@@ -17,13 +17,14 @@ function ArticleVoting({ article }) {
 
   function incrementVote() {
     const i = like ? -1 : 1;
+    like ? setLike(false) : setLike(true);
     patchVote(i, article.article_id)
-      .then(() => {
-        like ? setLike(false) : setLike(true);
+    .then(() => {
         setValidation("working");
       })
       .catch(() => {
         setValidation("error");
+        !like ? setLike(false) : setLike(true);
       });
   }
 

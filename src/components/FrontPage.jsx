@@ -21,7 +21,9 @@ function FrontPage() {
     ).then(({ articles }) => {
       setIsLoading(false);
       setArticleList(articles);
-      console.log(searchParams);
+      setDescription(
+        topic ? topicList.find((item) => item.slug === topic).description : ""
+      );
     });
   }, [topic, searchParams]);
 
@@ -64,16 +66,24 @@ function FrontPage() {
             <li className="article-list-item" key={article.article_id}>
               <Link to={`/articles/${article.article_id}`}>
                 <img
-                  className="article-list__img"
+                  className="article-list__img link--no-padding"
                   src={article.article_img_url}
                   alt={`Image for the article ${article.title}`}
                 ></img>
                 <h3>{article.title}</h3>
               </Link>
-              <p>
-                <em>author:</em> {article.author} <em> | category:</em>{" "}
-                {article.topic}
-              </p>
+
+              <p>author:{article.author}</p>
+              {topic !== article.topic ? (
+                <p>
+                  category:
+                  <Link to={`/${article.topic}`} className="topic-link">
+                    {article.topic}
+                  </Link>
+                </p>
+              ) : (
+                <p></p>
+              )}
               <p>{article.body.substring(0, 200).trim() + `...`}</p>
             </li>
           );
