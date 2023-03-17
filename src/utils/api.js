@@ -24,8 +24,10 @@ export const getUserByUsername = (username) => {
   });
 };
 
-export const getCommentsByArticleId = (article_id) => {
-  return api.get(`articles/${article_id}/comments`).then(({ data }) => {
+export const getCommentsByArticleId = (article_id, sort_by) => {
+  const config = { params: { sort_by } };
+
+  return api.get(`articles/${article_id}/comments`, config).then(({ data }) => {
     return data;
   });
 };

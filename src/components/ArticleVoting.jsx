@@ -13,7 +13,7 @@ function ArticleVoting({ article }) {
         (votes === 1 ? ` person likes` : ` people like`) +
         ` this article`
     );
-  }, [like]);
+  }, [like, votes]);
 
   const incrementVote = () => {
     const i = like ? -1 : 1;

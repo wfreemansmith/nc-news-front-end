@@ -30,8 +30,9 @@ function CommentForm({ user, comments, setComments, isLoading }) {
         setValidation("success");
         setBody("");
       })
-      .catch(() => {
+      .catch((err) => {
         setValidation("error other");
+        console.log(err)
       });
   };
 

@@ -111,8 +111,8 @@ button:active {
 
 
 .error {
-  color: red;
-  border-color: red;
+  color: #f13333;
+  border-color: #f13333;
 }
 
 .success {
