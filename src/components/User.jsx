@@ -40,6 +40,7 @@ function User() {
         <h3 className="user-details">{author.name}</h3>
         <p className="user-details">{author.username}</p>
       </section>
+      <h3>Published articles:</h3>
       <section>
         <ul className="user-profile__article-list">
           {articleList.map((article) => {

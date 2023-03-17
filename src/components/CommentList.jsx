@@ -1,6 +1,6 @@
 import CommentVoting from "./CommentVoting";
 import CommentDelete from "./CommentDelete";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCommentsByArticleId } from "../utils/api";
 
@@ -41,7 +41,7 @@ function CommentList({ comments, setComments, user }) {
           return (
             <li className="small-item" key={comment.comment_id}>
               <p className="comment-item__author">
-                <strong>{comment.author}</strong> said:
+              <Link to={`/users/${comment.author}`} className="topic-link">{comment.author}</Link> said:
               </p>
               <p className="comment-item__body">"{comment.body}"</p>
               <p className="comment-item__created_at">

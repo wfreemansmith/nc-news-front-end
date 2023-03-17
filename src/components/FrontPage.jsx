@@ -47,7 +47,7 @@ function FrontPage({ topicList, setDescription }) {
           onChange={(event) => {
             setSearchParams({
               sort_by: event.target.value,
-              order: sort_by === "created_at" ? "desc" : "asc",
+              order: event.target.value === "created_at" ? "desc" : "asc",
             });
           }}
         >
@@ -80,7 +80,7 @@ function FrontPage({ topicList, setDescription }) {
                 <img
                   className="article-list__img link--no-padding"
                   src={article.article_img_url}
-                  alt={`Article ${article.title}`}
+                  alt={`  Article ${article.title}`}
                 ></img>
                 <h3>{article.title}</h3>
               </Link>
