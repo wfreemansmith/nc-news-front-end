@@ -1,12 +1,13 @@
 import { useLocation } from "react-router-dom";
 
 function ErrorHandling() {
-  const location = useLocation()
+  const location = useLocation();
 
-  const errCode = location.state.errCode
-  const errMsg = location.state.errMsg
-
-  return (
+  const { errCode, errMsg } = location.state
+    ? location.state
+    : { errCode: 404, errMsg: "Page not found" };
+  
+    return (
     <div>
       {errCode ? (
         <>

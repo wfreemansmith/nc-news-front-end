@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { postComment } from "../utils/api";
 
-function CommentForm({ user, comments, setComments, isLoading}) {
-  
+function CommentForm({ user, comments, setComments, isLoading }) {
+  const { article_id } = useParams();
   const [body, setBody] = useState("");
   const [validation, setValidation] = useState("valid");
-  const { article_id } = useParams();
-  if (isLoading) return
+
+  if (isLoading) return;
 
   const handleSubmit = (event) => {
     event.preventDefault();

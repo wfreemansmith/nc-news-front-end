@@ -4,7 +4,7 @@ import { deleteComment } from "../utils/api";
 function CommentDelete({ thisComment, comments, setComments }) {
   const [deleting, setDeleting] = useState("working");
 
-  function handleDelete(comment_id) {
+  const handleDelete = (comment_id) => {
     setDeleting("in-progress");
     deleteComment(comment_id)
       .then(() => {

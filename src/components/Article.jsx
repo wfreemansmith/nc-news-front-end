@@ -19,8 +19,6 @@ function Article({ user }) {
       <CommentList
         comments={comments}
         setComments={setComments}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
         user={user}
       />
     </div>

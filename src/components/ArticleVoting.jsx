@@ -15,7 +15,7 @@ function ArticleVoting({ article }) {
     );
   }, [like]);
 
-  function incrementVote() {
+  const incrementVote = () => {
     const i = like ? -1 : 1;
     like ? setLike(false) : setLike(true);
     patchVote(i, article.article_id)
@@ -33,7 +33,7 @@ function ArticleVoting({ article }) {
       <h3>{voteString}</h3>
       <button
         className={`${validation} ${
-          like ? `article__like-button--true` : `article__like-button--false`
+          like ? `article__like-button button--true` : `article__like-button button--false`
         }`}
         aria-label="like"
         onClick={() => {

@@ -25,8 +25,6 @@ function App() {
     });
   }, []);
 
-  // set state for errors locally in each component, that way it mounts and re-mounts without needing reset the whole thing to get rid of the error
-
   return (
     <div className="App">
       <Header />

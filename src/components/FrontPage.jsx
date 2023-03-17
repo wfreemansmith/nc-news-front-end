@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [errCode, setErrCode] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
 
@@ -30,6 +30,7 @@ function FrontPage({ topicList, setDescription }) {
         );
       })
       .catch((err) => {
+        console.log("hello")
         setErrCode(err.response.status);
         setErrMsg(err.response.data.msg);
         // setIsLoading(false);
@@ -88,7 +89,7 @@ function FrontPage({ topicList, setDescription }) {
 
               <p>
                 author:
-                <Link to={`/users/${article.author}`} className="user-link">
+                <Link to={`/users/${article.author}`} className="topic-link">
                   {article.author}
                 </Link>
               </p>

@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { getArticleById, getUserByUsername } from "../utils/api";
 
 function ArticleCard({isLoading, setIsLoading}) {
+  const { article_id } = useParams();
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState([]);
   const [errCode, setErrCode] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
-  const { article_id } = useParams();
 
   const navigate = useNavigate();
 
@@ -35,29 +34,29 @@ function ArticleCard({isLoading, setIsLoading}) {
   return (
     <>
       <section>
-      <Link to={`/users/${article.author}`}><img
+      <img
           className="article-card__img"
           src={article.article_img_url}
           alt={article.title}
-        ></img></Link>
+        ></img>
         <h2 className="article-card__title">{article.title}</h2>
         </section>
-        <body  className="article-card">
+        <article  className="article-card">
         <div className="article-card__author">
-          <img
+        <Link to={`/users/${article.author}`}><img
             className="article-card__author-avatar"
             src={author.avatar_url}
             alt={`Avatar for author ${article.author}`}
-          ></img>
+          ></img></Link>
           <p className="article-card__author-name">
-            By <Link to={`/users/${article.author}`} className="user-link">{article.author}</Link>
+            By <Link to={`/users/${article.author}`} className="topic-link">{article.author}</Link>
           </p>
           <p className="article-card__topic">
             in <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
           </p>
         </div>
         <p>{article.body}</p>
-        </body>
+        </article>
       
       <ArticleVoting article={article}/>
     </>

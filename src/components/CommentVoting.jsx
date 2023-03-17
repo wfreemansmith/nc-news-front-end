@@ -33,8 +33,8 @@ function CommentVoting({ comment }) {
         aria-label="down-voteButton"
         className={
           (voteButton < 0
-            ? `comment-list__vote-button--true`
-            : `comment-list__vote-button--false`) + ` ${validation}`
+            ? `comment-list__vote-button button--true`
+            : `comment-list__vote-button button--false`) + ` ${validation}`
         }
         onClick={() => {
           handleVote(-1);
@@ -47,8 +47,8 @@ function CommentVoting({ comment }) {
         aria-label="up-voteButton"
         className={
           (voteButton > 0
-            ? `comment-list__vote-button--true`
-            : `comment-list__vote-button--false`) + ` ${validation}`
+            ? `comment-list__vote-button button--true`
+            : `comment-list__vote-button button--false`) + ` ${validation}`
         }
         onClick={() => {
           handleVote(1);
