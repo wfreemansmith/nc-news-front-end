@@ -87,14 +87,14 @@ function FrontPage({ topicList, setDescription }) {
                 <h3>{article.title}</h3>
               </Link>
 
-              <p>
+              <div className="article-list__user-info"><p className="user-details">
                 author:
                 <Link to={`/users/${article.author}`} className="topic-link">
                   {article.author}
                 </Link>
               </p>
               {topic !== article.topic ? (
-                <p>
+                <p className="user-details">
                   category:
                   <Link to={`/topics/${article.topic}`} className="topic-link">
                     {article.topic}
@@ -102,7 +102,8 @@ function FrontPage({ topicList, setDescription }) {
                 </p>
               ) : (
                 <p></p>
-              )}
+                )}
+                </div>
               <p>{article.body.substring(0, 200).trim() + `...`}</p>
             </li>
           );

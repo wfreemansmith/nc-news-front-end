@@ -48,10 +48,10 @@ function ArticleCard({isLoading, setIsLoading}) {
             src={author.avatar_url}
             alt={`Avatar for author ${article.author}`}
           ></img></Link>
-          <p className="article-card__author-name">
+          <p className="user-details">
             By <Link to={`/users/${article.author}`} className="topic-link">{article.author}</Link>
           </p>
-          <p className="article-card__topic">
+          <p className="user-details">
             in <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
           </p>
         </div>

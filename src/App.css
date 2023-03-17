@@ -52,22 +52,25 @@ h3 {
   font-size: 2.8vmin;
 }
 
+/* Topic links have different color props in small and large screen. This is because hover is a feature for cursors and not for touchscreens! */
+
 .topic-link {
   font-family: "Bungee", cursive;
   font-weight: normal;
-  background-color: #92abbc;
+  background-color: #f13333;
+  color: #faf9fa;
   border-radius: 30px;
   margin: 5px;
-  padding: 5px;
+  padding: min(20px, 0.1vh) 10px
 }
 
 .topic-link:hover {
-  background-color: #f13333;
+  background-color: #c04e4f;
   color: #faf9fa;
 }
 
 .topic-link:active {
-  background-color: #f13333;
+  background-color: #c04e4f;
   color: #faf9fa;
 }
 
@@ -180,6 +183,15 @@ button:active {
   max-width: 590px;
 }
 
+.article-list__user-info {
+  display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Single article */
 
 .single-article {
@@ -205,6 +217,12 @@ button:active {
   align-content: center;
 }
 
+.article-card__title {
+  font-family: "Bungee Shade", cursive;
+  font-size: 6vmin;
+  max-width: 900px
+}
+
 .article-card__img {
   width: 100%;
   max-width: 800px;
@@ -213,9 +231,13 @@ button:active {
 .article-card__author {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-content: space-around;
-  flex-wrap: wrap;
+  align-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 60vmin;
+  max-width: 500px;
+
 }
 
 .article-card__author-avatar {
@@ -224,18 +246,15 @@ button:active {
   border-color: #282631;
   border-width: 2px;
   border-style: solid;
+  margin: 0px 5px
 }
 
 .article-card__author-avatar:hover {
   border-color: #f13333;
 }
 
-.article-card__author-name {
-  margin-left: 10px;
-}
-
-.article-card__topic {
-  margin-left: 10px;
+.user-details {
+  margin: 0px 5px
 }
 
 .article__like-button {
@@ -304,14 +323,18 @@ button:active {
 
 .user-profile__user-info {
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: flex-start;
+  align-content: space-between;
+  flex-wrap: nowrap;
   align-items: center;
+  justify-content: space-evenly;
+  width: 90vmin;
+  max-width: 590px;
 }
 
 .user-profile__profile-pic {
-  max-width: 200px;
+  width: 30vmin;
+  max-width: fit-content;
   max-height: 200px;
   border-color: #282631;
   border-width: 2px;
@@ -351,6 +374,20 @@ button:active {
   }
 
   button:active {
+    background-color: #f13333;
+    color: #faf9fa;
+  }
+
+  .topic-link {
+    background-color: #92abbc;
+  }
+  
+  .topic-link:hover {
+    background-color: #f13333;
+    color: #faf9fa;
+  }
+  
+  .topic-link:active {
     background-color: #f13333;
     color: #faf9fa;
   }

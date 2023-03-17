@@ -37,8 +37,8 @@ function User() {
       <div className="user-profile">
         <section className="user-profile__user-info">
         <img src={author.avatar_url} alt={author.name} className="user-profile__profile-pic"></img>
-        <h3>{author.name}</h3>
-        <p>{author.username}</p>
+        <h3 className="user-details">{author.name}</h3>
+        <p className="user-details">{author.username}</p>
       </section>
       <section>
         <ul className="user-profile__article-list">
