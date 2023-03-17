@@ -9,13 +9,10 @@ import { getTopics } from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-// Build - warnings
-// updating state with a callback function was a useful one for some situations, then you don't need to include that state in dependencies
-
 function App() {
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
-  
+
   // const [user, setUser] = useState({
   //   username: "tickle122",
   //   name: "Tom Tickle",
