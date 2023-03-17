@@ -26,7 +26,7 @@ function ArticleCard({isLoading, setIsLoading}) {
         setErrCode(err.response.status)
         setErrMsg(err.response.data.msg)
       });
-  }, [article_id]);
+  }, [article_id, setIsLoading]);
 
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <p>Loading article...</p>;
@@ -49,10 +49,10 @@ function ArticleCard({isLoading, setIsLoading}) {
             alt={`Avatar for author ${article.author}`}
           ></img></Link>
           <p className="user-details">
-            By <Link to={`/users/${article.author}`} className="topic-link">{article.author}</Link>
+            <Link to={`/users/${article.author}`} className="topic-link">{article.author}</Link>
           </p>
           <p className="user-details">
-            in <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
+            <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
           </p>
         </div>
         <p>{article.body}</p>

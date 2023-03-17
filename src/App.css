@@ -1,17 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Heebo:wght@300;400&display=swap');
 
 html {
   background-color: #faf9fa;
   color: #282631;
 }
-
-/* Muted colours */
-/* #f5f5f7 */
-/* #ef9379 */
-/* #b56e8c */
-/* #5b92ef */
-/* #9f3025 */
 
 /* reddy blacky colours */
 /* Dark #282631 */
@@ -49,7 +41,10 @@ h2 {
 h3 {
   font-family: "Bungee", cursive;
   margin: 10px 0px;
-  font-size: 2.8vmin;
+}
+
+p {
+  font-family: 'Heebo', sans-serif;
 }
 
 /* Topic links have different color props in small and large screen. This is because hover is a feature for cursors and not for touchscreens! */
@@ -57,6 +52,7 @@ h3 {
 .topic-link {
   font-family: "Bungee", cursive;
   font-weight: normal;
+  font-size: 14px;
   background-color: #f13333;
   color: #faf9fa;
   border-radius: 30px;
@@ -84,6 +80,7 @@ button {
   font-weight: bold;
   padding: 6px;
   margin: 10px;
+  font-family: 'Heebo', sans-serif;
 }
 
 button:hover {
@@ -266,6 +263,7 @@ button:active {
 /* Comments form */
 
 .comment-form {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
   max-width: 600px;
