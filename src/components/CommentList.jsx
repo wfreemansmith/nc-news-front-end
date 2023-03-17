@@ -1,10 +1,8 @@
 import CommentVoting from "./CommentVoting";
 import CommentDelete from "./CommentDelete";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCommentsByArticleId } from "../utils/api";
-
-// declare new state for sort by query
 
 function CommentList({ comments, setComments, user }) {
   const { article_id } = useParams();
@@ -17,8 +15,8 @@ function CommentList({ comments, setComments, user }) {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [article_id, sortBy]);
-
+  }, [article_id, sortBy, setComments]);
+//
   if (isLoading) return <p>Loading comments...</p>;
 
   const dateFormat = (isoDate) => {

@@ -49,7 +49,7 @@ function User() {
                   <img
                     className="article-list__img link--no-padding"
                     src={article.article_img_url}
-                    alt={`Image for the article ${article.title}`}
+                    alt={`${article.title}`}
                   ></img>
                   <h3>{article.title}</h3>
                 </Link>

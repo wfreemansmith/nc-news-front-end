@@ -30,12 +30,10 @@ function FrontPage({ topicList, setDescription }) {
         );
       })
       .catch((err) => {
-        console.log("hello")
         setErrCode(err.response.status);
         setErrMsg(err.response.data.msg);
-        // setIsLoading(false);
       });
-  }, [topic, searchParams]);
+  }, [topic, searchParams,topicList, setDescription]);
 
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <p>Loading...</p>;
@@ -82,7 +80,7 @@ function FrontPage({ topicList, setDescription }) {
                 <img
                   className="article-list__img link--no-padding"
                   src={article.article_img_url}
-                  alt={`Image for the article ${article.title}`}
+                  alt={`Article ${article.title}`}
                 ></img>
                 <h3>{article.title}</h3>
               </Link>
