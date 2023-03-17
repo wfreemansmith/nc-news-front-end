@@ -1,32 +1,43 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
 
 function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [articleList, setArticleList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [articleList, setArticleList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errCode, setErrCode] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
 
+  const navigate = useNavigate();
+  
   const sort_by = searchParams.get("sort_by");
   const order = searchParams.get("order");
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(
-      topic,
-      searchParams.get("sort_by"),
-      searchParams.get("order")
-    ).then(({ articles }) => {
-      setIsLoading(false);
-      setArticleList(articles);
-      setDescription(
-        topic ? topicList.find((item) => item.slug === topic).description : ""
-      );
-    });
+    getArticles(topic, searchParams.get("sort_by"), searchParams.get("order"))
+      .then(({ articles }) => {
+        setIsLoading(false);
+        setArticleList(articles);
+        setDescription(
+          topic && topicList.length
+            ? topicList.find((item) => item.slug === topic).description
+            : ""
+        );
+      })
+      .catch((err) => {
+        console.log("hello")
+        setErrCode(err.response.status);
+        setErrMsg(err.response.data.msg);
+        // setIsLoading(false);
+      });
   }, [topic, searchParams]);
 
+  if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -34,7 +45,7 @@ function FrontPage({ topicList, setDescription }) {
       <section className="query-bar">
         Sorted by{" "}
         <select
-          value={sort_by}
+          value={sort_by || ""}
           onChange={(event) => {
             setSearchParams({
               sort_by: event.target.value,
@@ -49,7 +60,7 @@ function FrontPage({ topicList, setDescription }) {
         </select>{" "}
         in{" "}
         <select
-          value={order}
+          value={order || ""}
           onChange={(event) => {
             setSearchParams({
               sort_by: sort_by || "created_at",
@@ -66,7 +77,7 @@ function FrontPage({ topicList, setDescription }) {
       <ul className="article-list">
         {articleList.map((article) => {
           return (
-            <li className="article-list-item" key={article.article_id}>
+            <li className="small-item" key={article.article_id}>
               <Link to={`/articles/${article.article_id}`}>
                 <img
                   className="article-list__img link--no-padding"
@@ -78,14 +89,14 @@ function FrontPage({ topicList, setDescription }) {
 
               <p>
                 author:
-                <Link to={`/users/${article.author}`} className="user-link">
+                <Link to={`/users/${article.author}`} className="topic-link">
                   {article.author}
                 </Link>
               </p>
               {topic !== article.topic ? (
                 <p>
                   category:
-                  <Link to={`/${article.topic}`} className="topic-link">
+                  <Link to={`/topics/${article.topic}`} className="topic-link">
                     {article.topic}
                   </Link>
                 </p>

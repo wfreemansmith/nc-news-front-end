@@ -1,38 +1,47 @@
-import { useParams } from "react-router-dom";
-import { useEffect} from "react";
-import { getCommentsByArticleId } from "../utils/api";
-
 import CommentVoting from "./CommentVoting";
 import CommentDelete from "./CommentDelete";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getCommentsByArticleId } from "../utils/api";
 
-function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
+// declare new state for sort by query
+
+function CommentList({ comments, setComments, user }) {
   const { article_id } = useParams();
-  
+  const [sortBy, setSortBy] = useState("created_at");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    getCommentsByArticleId(article_id).then(({ comments }) => {
+    getCommentsByArticleId(article_id, sortBy).then(({ comments }) => {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [article_id]);
+  }, [article_id, sortBy]);
 
   if (isLoading) return <p>Loading comments...</p>;
 
-  function dateFormat(isoDate) {
+  const dateFormat = (isoDate) => {
     const date = new Date(isoDate);
     return date.toDateString();
-  }
-
-
+  };
 
   return (
     <div>
       <h3>Comments:</h3>
+      <select
+        value={sortBy}
+        onChange={(event) => {
+          setSortBy(event.target.value);
+        }}
+      >
+        <option value="created_at">most recent</option>
+        <option value="votes">most popular</option>
+      </select>
       <ul className="comment-list">
         {comments.map((comment) => {
           return (
-            <li className="comment-item" key={comment.comment_id}>
+            <li className="small-item" key={comment.comment_id}>
               <p className="comment-item__author">
                 <strong>{comment.author}</strong> said:
               </p>
@@ -41,7 +50,13 @@ function CommentList({ comments, setComments, isLoading, setIsLoading, user }) {
                 posted at {dateFormat(comment.created_at)}
               </p>
               <CommentVoting comment={comment} />
-              {user.username === comment.author ? <CommentDelete thisComment={comment} setComments={setComments} comments={comments}/> : (
+              {user.username === comment.author ? (
+                <CommentDelete
+                  thisComment={comment}
+                  setComments={setComments}
+                  comments={comments}
+                />
+              ) : (
                 <></>
               )}
             </li>

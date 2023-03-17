@@ -4,11 +4,12 @@ function Navigation({ topicList, setDescription, description }) {
   const navigate = useNavigate();
 
   const handleChange = (slug) => {
-    navigate(`/${slug}`);
+    navigate(`/topics/${slug}`);
     setDescription(
       topicList.find((topicItem) => topicItem.slug === slug).description
     );
   };
+
 
   return (
     <>

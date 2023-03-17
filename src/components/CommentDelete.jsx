@@ -1,14 +1,14 @@
-import {useState} from 'react';
+import { useState } from "react";
 import { deleteComment } from "../utils/api";
 
-function CommentDelete({thisComment, comments, setComments}) {
+function CommentDelete({ thisComment, comments, setComments }) {
   const [deleting, setDeleting] = useState("working");
 
-  function handleDelete(comment_id) {
-    setDeleting("in-progress")
+  const handleDelete = (comment_id) => {
+    setDeleting("in-progress");
     deleteComment(comment_id)
       .then(() => {
-        setComments(comments.filter((comment) => comment !== thisComment))
+        setComments(comments.filter((comment) => comment !== thisComment));
       })
       .catch(() => {
         setDeleting("error");
@@ -16,17 +16,15 @@ function CommentDelete({thisComment, comments, setComments}) {
   }
 
   return (
-    (
-      <button
-        className={deleting}
-        onClick={() => {
-          handleDelete(thisComment.comment_id);
-        }}
-      >
+    <button
+      className={deleting}
+      onClick={() => {
+        handleDelete(thisComment.comment_id);
+      }}
+    >
       {deleting === "in-progress" ? "Deleting..." : "Delete"}
-      </button>
-    )
-  )
+    </button>
+  );
 }
 
-export default CommentDelete
+export default CommentDelete;

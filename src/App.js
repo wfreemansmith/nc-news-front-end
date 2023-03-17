@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
+import ErrorHandling from "./components/ErrorHandling";
 import { getTopics } from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -28,7 +29,6 @@ function App() {
     <div className="App">
       <Header />
       <Navigation
-        setTopicList={setTopicList}
         topicList={topicList}
         setDescription={setDescription}
         description={description}
@@ -36,27 +36,18 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <FrontPage setDescription={setDescription} />
-          }
+          element={<FrontPage setDescription={setDescription} />}
         />
-        <Route
-          path="/articles/:article_id"
-          element={
-            <Article
-              user={user}
-              topicList={topicList}
-              setDescription={setDescription}
-            />
-          }
-        />
+        <Route path="/articles/:article_id" element={<Article user={user} />} />
         <Route path="/users/:username" element={<User />} />
         <Route
-          path="/:topic"
+          path="/topics/:topic"
           element={
             <FrontPage topicList={topicList} setDescription={setDescription} />
           }
         />
+        <Route path="/error" element={<ErrorHandling />} />
+        <Route path="*" element={<ErrorHandling />} />
       </Routes>
     </div>
   );
