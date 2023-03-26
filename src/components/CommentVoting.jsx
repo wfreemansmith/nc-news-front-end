@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchCommentVote } from "../utils/api";
+import { FaHeart, FaRegHeart }  from "react-icons/fa"
 
 function CommentVoting({ comment }) {
   const [voteButton, setVoteButton] = useState(0);
@@ -40,7 +41,7 @@ function CommentVoting({ comment }) {
           handleVote(-1);
         }}
       >
-        ♡
+        <FaRegHeart size="9" />
       </button>{" "}
       Votes: {voteCount}{" "}
       <button
@@ -54,7 +55,7 @@ function CommentVoting({ comment }) {
           handleVote(1);
         }}
       >
-        ♥
+        <FaHeart size="9"/>
       </button>
     </p>
   );

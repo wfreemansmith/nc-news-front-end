@@ -13,6 +13,9 @@ function App() {
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
 
+// Add heart icons to buttons as png to avoid weird phone compatibility. Check out proportions
+// Add user login
+
   // const [user, setUser] = useState({
   //   username: "tickle122",
   //   name: "Tom Tickle",

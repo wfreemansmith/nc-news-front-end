@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { patchVote } from "../utils/api";
+import { FaHeart, FaRegHeart } from "react-icons/fa"
 
 function ArticleVoting({ article }) {
   const [like, setLike] = useState(false);
@@ -18,6 +19,7 @@ function ArticleVoting({ article }) {
   const incrementVote = () => {
     const i = like ? -1 : 1;
     like ? setLike(false) : setLike(true);
+    // setLike((currLike) => !currLike  )
     patchVote(i, article.article_id)
     .then(() => {
         setValidation("working");
@@ -40,7 +42,7 @@ function ArticleVoting({ article }) {
           incrementVote();
         }}
       >
-        {like ? "♥" : "♡"}
+        {like ? <FaHeart size="12"/> : <FaRegHeart size="12"/>}
       </button>
     </section>
   );
