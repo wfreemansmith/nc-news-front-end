@@ -1,4 +1,4 @@
-# Norcoders News App
+# Northcoders News App
 ## Background
 
 This repo is a portfolio project simulating a message board / news site. Visitors to the site can read news articles, sort and order these articles, and interact with them through comments and likes. The project was developed in React.
