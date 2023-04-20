@@ -26,6 +26,7 @@ a {
   color: #282631;
   font-weight: bold;
   text-decoration: none;
+  transition: background-color 0.2s
 }
 
 a:hover {
@@ -41,6 +42,7 @@ h2 {
 h3 {
   font-family: "Bungee", cursive;
   margin: 10px 0px;
+  transition: color 0.2s
 }
 
 p {
@@ -81,10 +83,11 @@ button {
   padding: 6px;
   margin: 10px;
   font-family: 'Heebo', sans-serif;
+  transition: background-color 0.5s, border-style 0.5s, color 0.5s
 }
 
 button:hover {
-  background-color: white;
+  background-color: white;  
 }
 
 button:active {
@@ -109,7 +112,6 @@ button:active {
   border-style: dashed;
 }
 
-
 .error {
   color: #f13333;
   border-color: #f13333;
@@ -130,6 +132,7 @@ button:active {
   font-size: 14.8vmin;
   text-decoration: overline;
   margin: 5% 0% 0% 0%;
+  
 }
 
 .header-text:hover {
@@ -238,12 +241,14 @@ button:active {
 }
 
 .article-card__author-avatar {
-  max-width: 50px;
-  max-height: 50px;
+  width: 45px;
+  height: 45px;
   border-color: #282631;
   border-width: 2px;
   border-style: solid;
-  margin: 0px 5px
+  margin: 0px 5px;
+  padding: 5px;
+  object-fit: contain;
 }
 
 .article-card__author-avatar:hover {
@@ -301,6 +306,10 @@ button:active {
   width: 90v;
 }
 
+.delete {
+  width: 90px
+}
+
 /* This hover / active colour scheme is optimised for laptops / cursor-based devices, cos when you click something and you're hovering it looks bright */
 
 .comment-list__vote-button {
@@ -331,12 +340,17 @@ button:active {
 }
 
 .user-profile__profile-pic {
-  width: 30vmin;
-  max-width: fit-content;
+  width: 18vmin;
+  height: 18vmin;
+  max-width: 200px;
   max-height: 200px;
+  background-color: white;
   border-color: #282631;
   border-width: 2px;
+  border-radius: 17px;
   border-style: solid;
+  object-fit: contain;
+  padding: 2vmin
 }
 
 .user-profile__article-list {

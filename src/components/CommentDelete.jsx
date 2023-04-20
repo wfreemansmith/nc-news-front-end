@@ -17,7 +17,7 @@ function CommentDelete({ thisComment, comments, setComments }) {
 
   return (
     <button
-      className={deleting}
+      className={"delete " + deleting}
       onClick={() => {
         handleDelete(thisComment.comment_id);
       }}
