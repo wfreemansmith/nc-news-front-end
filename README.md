@@ -1,9 +1,9 @@
-# Norcoders News App
+# Northcoders News App
 ## Background
 
 This repo is a portfolio project simulating a message board / news site. Visitors to the site can read news articles, sort and order these articles, and interact with them through comments and likes. The project was developed in React.
 
-A hosted version of this repo can be found here: https://fastidious-cuchufli-4979f6.netlify.app
+A hosted version of this repo can be found here: https://nc-news-front-end-wfs.netlify.app/
 
 The site is complement to the Northcoders News API, which is hosted [here](https://backend-project-nc-news.onrender.com). You can find the repo for this project [here](https://github.com/wfreemansmith/nc-news-back-end) and a hosted version [here](https://backend-project-nc-news.onrender.com).
 
