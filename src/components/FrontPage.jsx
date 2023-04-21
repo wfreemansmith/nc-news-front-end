@@ -39,7 +39,7 @@ function FrontPage({ topicList, setDescription }) {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="front-page">
       <section className="query-bar">
         Sorted by{" "}
         <select

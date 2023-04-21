@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Heebo:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Heebo:wght@300;400&display=swap");
 
 html {
   background-color: #faf9fa;
@@ -13,6 +13,11 @@ html {
 /* White-ish #faf9fa */
 
 .App {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   text-align: center;
   border: 3px;
   border-bottom: 0px;
@@ -22,11 +27,33 @@ html {
   padding: 10px 0px 200px 0px;
 }
 
+/* Grid */
+
+.header {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.login {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.navigation {
+  grid-area: 2 / 2 / 3 / 3;
+  margin: 0px 0px 30px 0px;
+}
+
+.front-page {
+  display: grid;
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+/* Styling */
+
 a {
   color: #282631;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.2s
+  transition: background-color 0.2s;
 }
 
 a:hover {
@@ -42,11 +69,11 @@ h2 {
 h3 {
   font-family: "Bungee", cursive;
   margin: 10px 0px;
-  transition: color 0.2s
+  transition: color 0.2s;
 }
 
 p {
-  font-family: 'Heebo', sans-serif;
+  font-family: "Heebo", sans-serif;
 }
 
 /* Topic links have different color props in small and large screen. This is because hover is a feature for cursors and not for touchscreens! */
@@ -59,7 +86,7 @@ p {
   color: #faf9fa;
   border-radius: 30px;
   margin: 5px;
-  padding: min(20px, 0.1vh) 10px
+  padding: min(20px, 0.1vh) 10px;
 }
 
 .topic-link:hover {
@@ -82,12 +109,12 @@ button {
   font-weight: bold;
   padding: 6px;
   margin: 10px;
-  font-family: 'Heebo', sans-serif;
-  transition: background-color 0.5s, border-style 0.5s, color 0.5s
+  font-family: "Heebo", sans-serif;
+  transition: background-color 0.5s, border-style 0.5s, color 0.5s;
 }
 
 button:hover {
-  background-color: white;  
+  background-color: white;
 }
 
 button:active {
@@ -105,7 +132,7 @@ button:active {
 }
 
 .button--true:active {
-  background-color: #c04e4f
+  background-color: #c04e4f;
 }
 
 .button--false {
@@ -127,12 +154,12 @@ button:active {
 }
 
 /* Header & Navigation */
+
 .header-text {
   font-family: "Bungee Shade", cursive;
   font-size: 14.8vmin;
   text-decoration: overline;
   margin: 5% 0% 0% 0%;
-  
 }
 
 .header-text:hover {
@@ -148,25 +175,12 @@ button:active {
   line-height: 1em;
 }
 
-.navigation {
-  margin: 0px 0px 30px 0px;
-}
-
-.navigation__select {
+.navigation__menu {
   margin: 9px;
   padding: 4px;
 }
 
 /* FrontPage */
-
-.small-item {
-  max-width: 590px;
-  border-style: solid;
-  border-radius: 17px;
-  padding: 14px;
-  margin: 8px;
-  width: 80vw;
-}
 
 .article-list {
   display: flex;
@@ -178,6 +192,15 @@ button:active {
   flex-direction: column;
 }
 
+.small-item {
+  max-width: 590px;
+  border-style: solid;
+  border-radius: 17px;
+  padding: 14px;
+  margin: 8px;
+  width: 80vw;
+}
+
 .article-list__img {
   width: 80vw;
   max-width: 590px;
@@ -185,11 +208,11 @@ button:active {
 
 .article-list__user-info {
   display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Single article */
@@ -220,7 +243,7 @@ button:active {
 .article-card__title {
   font-family: "Bungee Shade", cursive;
   font-size: 6vmin;
-  max-width: 900px
+  max-width: 900px;
 }
 
 .article-card__img {
@@ -237,7 +260,6 @@ button:active {
   justify-content: center;
   width: 60vmin;
   max-width: 500px;
-
 }
 
 .article-card__author-avatar {
@@ -256,7 +278,7 @@ button:active {
 }
 
 .user-details {
-  margin: 0px 5px
+  margin: 0px 5px;
 }
 
 .article__like-button {
@@ -268,7 +290,7 @@ button:active {
 /* Comments form */
 
 .comment-form {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
   max-width: 600px;
@@ -307,7 +329,7 @@ button:active {
 }
 
 .delete {
-  width: 90px
+  width: 90px;
 }
 
 /* This hover / active colour scheme is optimised for laptops / cursor-based devices, cos when you click something and you're hovering it looks bright */
@@ -317,7 +339,7 @@ button:active {
   height: 30px;
   padding: 0px;
   font-size: 1em;
-} 
+}
 
 /* User profile */
 
@@ -350,7 +372,7 @@ button:active {
   border-radius: 17px;
   border-style: solid;
   object-fit: contain;
-  padding: 2vmin
+  padding: 2vmin;
 }
 
 .user-profile__article-list {
@@ -379,6 +401,17 @@ button:active {
   margin: 0px;
 }
 
+@media only screen and (max-width: 1050px) {
+  /* new grid to account for login bar */
+  .header {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+
+  .login {
+    visibility: hidden;
+  }
+}
+
 @media only screen and (min-width: 770px) {
   .button--true {
     background-color: #c04e4f;
@@ -393,23 +426,14 @@ button:active {
   .topic-link {
     background-color: #92abbc;
   }
-  
+
   .topic-link:hover {
     background-color: #f13333;
     color: #faf9fa;
   }
-  
+
   .topic-link:active {
     background-color: #f13333;
     color: #faf9fa;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
