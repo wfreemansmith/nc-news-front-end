@@ -3,9 +3,14 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/Theme";
 
+// topicList, is this relevant? not being passed down...
 function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
+  const { theme } = useContext(ThemeContext)
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +87,7 @@ function FrontPage({ topicList, setDescription }) {
                   src={article.article_img_url}
                   alt={`  Article ${article.title}`}
                 ></img>
-                <h3>{article.title}</h3>
+                <h3 className={theme}>{article.title}</h3>
               </Link>
 
               <div className="article-list__user-info"><p className="user-details">
