@@ -12,13 +12,13 @@ function Navigation({ topicList, setDescription, description }) {
 
 
   return (
-    <div className="navigation__grid">
+    <div className="navigation">
       <h2 className="navigation__description">{description}</h2>
-      <nav className="navigation">
+      <nav className="navigation__options">
         <label htmlFor="navigation-menu">Topic:</label>
         <select
           id="navigation-menu"
-          className="navigation__select"
+          className="navigation__menu"
           value={"Topic"}
           onChange={(event) => {
             handleChange(event.target.value);

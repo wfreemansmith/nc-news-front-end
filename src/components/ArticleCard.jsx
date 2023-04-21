@@ -1,10 +1,11 @@
-import ArticleVoting from "./ArticleVoting";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getArticleById, getUserByUsername } from "../utils/api";
+import ArticleVoting from "./ArticleVoting";
 
 function ArticleCard({isLoading, setIsLoading}) {
   const { article_id } = useParams();
+
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState([]);
   const [errCode, setErrCode] = useState(null);

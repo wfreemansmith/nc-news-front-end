@@ -11,6 +11,7 @@ The site is complement to the Northcoders News API, which is hosted [here](https
 
 * Sort and order articles by topic, author, popularity etc
 * Comment, up-vote and down-vote articles
+* Light and dark themes
 * Optimistic rendering
 * Conditional CSS rules
 
@@ -38,5 +39,4 @@ The project will be updated in the near future with the following features:
 
 * Authenticated login
 * Transition animations
-* Light and dark mode
 

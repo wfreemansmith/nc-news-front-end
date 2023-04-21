@@ -2,9 +2,13 @@ import { getArticles, getUserByUsername } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/Theme";
 
 function User() {
   const { username } = useParams();
+  const { theme } = useContext(ThemeContext);
+
   const [author, setAuthor] = useState({});
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,10 +27,11 @@ function User() {
       .then(({ articles }) => {
         setArticleList(articles);
         setIsLoading(false);
-      }).catch((err) => {
-        setErrCode(err.response.status)
-        setErrMsg(err.response.data.msg)
       })
+      .catch((err) => {
+        setErrCode(err.response.status);
+        setErrMsg(err.response.data.msg);
+      });
   }, [username]);
 
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
@@ -36,38 +41,48 @@ function User() {
     <>
       <div className="user-profile">
         <section className="user-profile__user-info">
-        <img src={author.avatar_url} alt={author.name} className="user-profile__profile-pic"></img>
-        <h3 className="user-details">{author.name}</h3>
-        <p className="user-details">{author.username}</p>
-      </section>
-      <h3>Published articles:</h3>
-      <section>
-        <ul className="user-profile__article-list">
-          {articleList.map((article) => {
-            return (
-              <li className="article-list-item small-item" key={article.article_id}>
-                <Link to={`/articles/${article.article_id}`}>
-                  <img
-                    className="article-list__img link--no-padding"
-                    src={article.article_img_url}
-                    alt={`${article.title}`}
-                  ></img>
-                  <h3>{article.title}</h3>
-                </Link>
-                <p>
-                  category:
-                  <Link to={`/topics/${article.topic}`} className="topic-link">
-                    {article.topic}
+          <img
+            src={author.avatar_url}
+            alt={author.name}
+            className="user-profile__profile-pic"
+          ></img>
+          <h3 className="user-details">{author.name}</h3>
+          <p className="user-details">{author.username}</p>
+        </section>
+        <h3>Published articles:</h3>
+        <section>
+          <ul className="user-profile__article-list">
+            {articleList.map((article) => {
+              return (
+                <li
+                  className="article-list-item small-item"
+                  key={article.article_id}
+                >
+                  <Link to={`/articles/${article.article_id}`}>
+                    <img
+                      className="article-list__img link--no-padding"
+                      src={article.article_img_url}
+                      alt={`${article.title}`}
+                    ></img>
+                    <h3 className={theme}>{article.title}</h3>
                   </Link>
-                </p>
+                  <p>
+                    category:
+                    <Link
+                      to={`/topics/${article.topic}`}
+                      className="topic-link"
+                    >
+                      {article.topic}
+                    </Link>
+                  </p>
 
-                <p>{article.body.substring(0, 200).trim() + `...`}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-          </div>
+                  <p>{article.body.substring(0, 200).trim() + `...`}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </div>
     </>
   );
 }
