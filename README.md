@@ -7,6 +7,13 @@ A hosted version of this repo can be found here: https://nc-news-front-end-wfs.n
 
 The site is complement to the Northcoders News API, which is hosted [here](https://backend-project-nc-news.onrender.com). You can find the repo for this project [here](https://github.com/wfreemansmith/nc-news-back-end) and a hosted version [here](https://backend-project-nc-news.onrender.com).
 
+## Features
+
+* Sort and order articles by topic, author, popularity etc
+* Comment, up-vote and down-vote articles
+* Optimistic rendering
+* Conditional CSS rules
+
 ## Local set-up
 
 Before installing locally, ensure that you have as a minumum requirement Node v19.20.0 set up on your system.
@@ -24,3 +31,12 @@ Once cloned, input ```npm istall``` which will install the following dependencie
 * Web Vitals (v2.1.4)
 
 To run the app locally, use one of the scripts provided by React ```npm start```. This will open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Updates
+
+The project will be updated in the near future with the following features:
+
+* Authenticated login
+* Transition animations
+* Light and dark mode
+

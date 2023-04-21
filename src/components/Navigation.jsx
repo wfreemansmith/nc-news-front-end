@@ -12,7 +12,7 @@ function Navigation({ topicList, setDescription, description }) {
 
 
   return (
-    <>
+    <div className="navigation__grid">
       <h2 className="navigation__description">{description}</h2>
       <nav className="navigation">
         <label htmlFor="navigation-menu">Topic:</label>
@@ -30,7 +30,7 @@ function Navigation({ topicList, setDescription, description }) {
           })}
         </select>
       </nav>
-    </>
+    </div>
   );
 }
 

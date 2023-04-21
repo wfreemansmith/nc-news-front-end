@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
+import Login from "./components/Login";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
@@ -39,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Login/>
       <Navigation
         topicList={topicList}
         setDescription={setDescription}
