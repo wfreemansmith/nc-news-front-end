@@ -116,6 +116,13 @@ p {
   color: #faf9fa;
 }
 
+/* dark mode */
+
+.dark {
+  background-color: #282631;
+  color: #faf9fa;
+}
+
 /* Buttons */
 
 button {
@@ -170,7 +177,7 @@ button:active {
   background-color: #faf9fa;
 }
 
-.dark-button {
+.function-button {
   font-size: 4vh;
   border-width: 0px;
   height: 50px;
@@ -498,13 +505,6 @@ button:active {
   font-family: "Bungee", cursive;
   font-size: 4.5vmin;
   margin: 0px;
-}
-
-/* dark mode */
-
-.dark {
-  background-color: #282631;
-  color: #faf9fa;
 }
 
 @media only screen and (max-width: 780px) {
