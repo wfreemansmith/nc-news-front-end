@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/Theme";
 
-// topicList, is this relevant? not being passed down...
 function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
   const { theme } = useContext(ThemeContext)

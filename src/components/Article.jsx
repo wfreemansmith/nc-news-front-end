@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ArticleCard from "./ArticleCard";
-import CommentForm from "./CommentForm";
-import CommentList from "./CommentList";
+import CommentForm from "./Comments/CommentForm";
+import CommentList from "./Comments/CommentList";
 
-function Article({ user }) {
+function Article({setPopUp}) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,15 +11,14 @@ function Article({ user }) {
     <div className="single-article">
       <ArticleCard isLoading={isLoading} setIsLoading={setIsLoading} />
       <CommentForm
-        user={user}
         comments={comments}
         setComments={setComments}
         isLoading={isLoading}
+        setPopUp={setPopUp}
       />
       <CommentList
         comments={comments}
         setComments={setComments}
-        user={user}
       />
     </div>
   );

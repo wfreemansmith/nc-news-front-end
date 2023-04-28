@@ -6,23 +6,18 @@ import { getTopics } from "./utils/api";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
+import LoginPopOut from "./components/LoginPopup/LoginPopOut";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
 import ErrorHandling from "./components/ErrorHandling";
 
 function App() {
-  const {theme} = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
-
-    const user = {
-    username: "tickle122",
-    name: "Tom Tickle",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
-  };
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     getTopics().then(({ topics }) => {
@@ -31,9 +26,10 @@ function App() {
   }, []);
 
   return (
-    <div className={`App ` + theme}>
+    <>
+    <div className={`App ` + theme} onClick={() => popUp ? setPopUp(false) : null}>
       <Header />
-      <Login/>
+      <Login setPopUp={setPopUp}/>
       <Navigation
         topicList={topicList}
         setDescription={setDescription}
@@ -44,7 +40,7 @@ function App() {
           path="/"
           element={<FrontPage setDescription={setDescription} />}
         />
-        <Route path="/articles/:article_id" element={<Article user={user} />} />
+        <Route path="/articles/:article_id" element={<Article setPopUp={setPopUp}/>} />
         <Route path="/users/:username" element={<User />} />
         <Route
           path="/topics/:topic"
@@ -56,6 +52,8 @@ function App() {
         <Route path="*" element={<ErrorHandling />} />
       </Routes>
     </div>
+    {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
+    </>
   );
 }
 
