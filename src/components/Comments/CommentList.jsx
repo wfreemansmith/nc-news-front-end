@@ -1,11 +1,14 @@
-import CommentVoting from "./CommentVoting";
-import CommentDelete from "./CommentDelete";
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getCommentsByArticleId } from "../utils/api";
+import { useState, useEffect, useContext } from "react";
+import { getCommentsByArticleId } from "../../utils/api";
+import { UserContext } from "../../contexts/User";
+import CommentDelete from "./CommentDelete";
+import CommentVoting from "./CommentVoting";
 
-function CommentList({ comments, setComments, user }) {
+function CommentList({ comments, setComments }) {
   const { article_id } = useParams();
+  const { user } = useContext(UserContext)
+
   const [sortBy, setSortBy] = useState("created_at");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +19,7 @@ function CommentList({ comments, setComments, user }) {
       setIsLoading(false);
     });
   }, [article_id, sortBy, setComments]);
-//
+  //
   if (isLoading) return <p>Loading comments...</p>;
 
   const dateFormat = (isoDate) => {
@@ -41,7 +44,10 @@ function CommentList({ comments, setComments, user }) {
           return (
             <li className="small-item" key={comment.comment_id}>
               <p className="comment-item__author">
-              <Link to={`/users/${comment.author}`} className="topic-link">{comment.author}</Link> said:
+                <Link to={`/users/${comment.author}`} className="topic-link">
+                  {comment.author}
+                </Link>{" "}
+                said:
               </p>
               <p className="comment-item__body">"{comment.body}"</p>
               <p className="comment-item__created_at">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { patchCommentVote } from "../utils/api";
+import { patchCommentVote } from "../../utils/api";
 import { FaHeart, FaRegHeart }  from "react-icons/fa"
 
 function CommentVoting({ comment }) {

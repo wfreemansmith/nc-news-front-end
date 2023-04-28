@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteComment } from "../utils/api";
+import { deleteComment } from "../../utils/api";
 
 function CommentDelete({ thisComment, comments, setComments }) {
   const [deleting, setDeleting] = useState("working");

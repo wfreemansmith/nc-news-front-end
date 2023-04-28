@@ -19,13 +19,6 @@ function App() {
   const [description, setDescription] = useState("");
   const [popUp, setPopUp] = useState(false);
 
-  const user = {
-    username: "tickle122",
-    name: "Tom Tickle",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
-  };
-
   useEffect(() => {
     getTopics().then(({ topics }) => {
       setTopicList([...topics]);
@@ -47,7 +40,7 @@ function App() {
           path="/"
           element={<FrontPage setDescription={setDescription} />}
         />
-        <Route path="/articles/:article_id" element={<Article user={user} />} />
+        <Route path="/articles/:article_id" element={<Article setPopUp={setPopUp}/>} />
         <Route path="/users/:username" element={<User />} />
         <Route
           path="/topics/:topic"
