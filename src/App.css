@@ -35,26 +35,25 @@ html {
 
 .login {
   grid-area: 1 / 3 / 2 / 4;
-  display: grid;
-  align-items: start;
+  display: flex;
+  align-items: center;
   justify-content: end;
+  height: fit-content;
 }
 
 .light-toggle {
   grid-area: 1 / 1 / 2 / 2;
-  display: grid;
-  align-items: start;
+  display: flex;
+  align-items: center;
   justify-content: start;
+  height: fit-content;
 }
 
 .navigation {
   grid-area: 2 / 2 / 3 / 3;
-  margin: 10px;
-  /* margin: 0px 0px 30px 0px; */
+  margin: 10px; 
   display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+  flex-direction: column;
 }
 
 .front-page,
@@ -71,9 +70,11 @@ a {
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 a:hover {
+  cursor: pointer;
   color: #f13333;
 }
 
@@ -91,6 +92,10 @@ h3 {
 
 p {
   font-family: "Heebo", sans-serif;
+}
+
+label {
+  margin: 8px
 }
 
 /* Topic links have different color props in small and large screen. This is because hover is a feature for cursors and not for touchscreens! */
@@ -188,6 +193,11 @@ button:active {
   justify-content: center;
 }
 
+.function-button:hover {
+  cursor: pointer;
+  color: #f13333;
+}
+
 .close-button {
   grid-area: 1 / 1;
   font-size: 4vh;
@@ -263,6 +273,7 @@ button:active {
   align-items: center;
   justify-items: center;
 }
+
 .popup-window {
   max-width: 400px;
   max-height: 250px;
@@ -280,10 +291,18 @@ button:active {
   transition: box-shadow 1s;
 }
 
-.login-form {
+.login__form {
   grid-area: 1 / 1;
   display: grid;
   justify-items: center;
+}
+
+.login__button {
+  width: 90px;
+}
+
+.logged-in-screen {
+  display: grid;
 }
 
 /* FrontPage */
@@ -520,6 +539,10 @@ button:active {
     justify-content: center;
     align-items: center;
     justify-items: center;
+  }
+
+  .login__text {
+    visibility: hidden;
   }
 
   .light-toggle {

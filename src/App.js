@@ -6,7 +6,7 @@ import { getTopics } from "./utils/api";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
-import LoginPopOut from "./components/LoginPopOut";
+import LoginPopOut from "./components/LoginPopup/LoginPopOut";
 import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
@@ -17,7 +17,7 @@ function App() {
 
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
-  const [login, setLogin] = useState(false);
+  const [popUp, setPopUp] = useState(false);
 
   const user = {
     username: "tickle122",
@@ -34,9 +34,9 @@ function App() {
 
   return (
     <>
-    <div className={`App ` + theme} onClick={() => login ? setLogin(false) : null}>
+    <div className={`App ` + theme} onClick={() => popUp ? setPopUp(false) : null}>
       <Header />
-      <Login setLogin={setLogin}/>
+      <Login setPopUp={setPopUp}/>
       <Navigation
         topicList={topicList}
         setDescription={setDescription}
@@ -59,7 +59,7 @@ function App() {
         <Route path="*" element={<ErrorHandling />} />
       </Routes>
     </div>
-    {login ? <LoginPopOut setLogin={setLogin} /> : null}
+    {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
     </>
   );
 }

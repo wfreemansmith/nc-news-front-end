@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { ThemeContext } from "../contexts/Theme";
 import { UserContext } from "../contexts/User";
 
-function Login({ setLogin }) {
+function Login({ setPopUp }) {
   const { theme, setTheme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
 
-  const isUser = Object.keys(user).length
+  const isUser = Object.keys(user).length;
 
   const toggleDarkMode = () => {
     theme === "" ? setTheme("dark") : setTheme("");
@@ -16,14 +16,14 @@ function Login({ setLogin }) {
 
   return (
     <>
-      <div className="login">
-        <button
-          className={"dark-button function-button " + theme}
-          onClick={() => {
-            setLogin(true);
-          }}
-        >
-          {isUser ? <FaUserCircle /> : <FaRegUserCircle/>}
+      <div className="login"
+        onClick={() => {
+          setPopUp(true);
+        }}
+      >
+        <a className={"login__text " + theme}>{isUser ? user.name : "Login"}</a>
+        <button className={"function-button " + theme}>
+          {isUser ? <FaUserCircle /> : <FaRegUserCircle />}
         </button>
       </div>
       <div className="light-toggle">
