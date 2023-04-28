@@ -21,7 +21,7 @@ function Login({ setPopUp }) {
           setPopUp(true);
         }}
       >
-        <a className={"login__text " + theme}>{isUser ? user.name : "Login"}</a>
+        <p className={"login__text pointer " + theme}>{isUser ? user.name : "Login"}</p>
         <button className={"function-button " + theme}>
           {isUser ? <FaUserCircle /> : <FaRegUserCircle />}
         </button>

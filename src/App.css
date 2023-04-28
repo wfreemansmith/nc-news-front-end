@@ -69,12 +69,19 @@ a {
   color: #282631;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.2s;
   transition: background-color 0.2s, color 0.2s;
 }
 
 a:hover {
-  cursor: pointer;
+  color: #f13333;
+}
+
+.pointer {
+  cursor: pointer; 
+  transition: color 0.4s;
+}
+
+.pointer:hover {
   color: #f13333;
 }
 
