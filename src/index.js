@@ -1,4 +1,4 @@
-import "./index.css";
+import "./styles/index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./contexts/Theme";
 import { UserProvider } from "./contexts/User";

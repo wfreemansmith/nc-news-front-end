@@ -1,6 +1,7 @@
-import "./App.css";
+import "./styles/App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import { motion as m } from "framer-motion";
 import { ThemeContext } from "./contexts/Theme";
 import { getTopics } from "./utils/api";
 import Header from "./components/Header";
@@ -27,32 +28,43 @@ function App() {
 
   return (
     <>
-    <div className={`App ` + theme} onClick={() => popUp ? setPopUp(false) : null}>
-      <Header />
-      <Login setPopUp={setPopUp}/>
-      <Navigation
-        topicList={topicList}
-        setDescription={setDescription}
-        description={description}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={<FrontPage setDescription={setDescription} />}
+      <m.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={`App ` + theme}
+        onClick={() => (popUp ? setPopUp(false) : null)}
+      >
+        <Header />
+        <Login setPopUp={setPopUp} />
+        <Navigation
+          topicList={topicList}
+          setDescription={setDescription}
+          description={description}
         />
-        <Route path="/articles/:article_id" element={<Article setPopUp={setPopUp}/>} />
-        <Route path="/users/:username" element={<User />} />
-        <Route
-          path="/topics/:topic"
-          element={
-            <FrontPage topicList={topicList} setDescription={setDescription} />
-          }
-        />
-        <Route path="/error" element={<ErrorHandling />} />
-        <Route path="*" element={<ErrorHandling />} />
-      </Routes>
-    </div>
-    {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
+        <Routes>
+          <Route
+            path="/"
+            element={<FrontPage setDescription={setDescription} />}
+          />
+          <Route
+            path="/articles/:article_id"
+            element={<Article setPopUp={setPopUp} />}
+          />
+          <Route path="/users/:username" element={<User />} />
+          <Route
+            path="/topics/:topic"
+            element={
+              <FrontPage
+                topicList={topicList}
+                setDescription={setDescription}
+              />
+            }
+          />
+          <Route path="/error" element={<ErrorHandling />} />
+          <Route path="*" element={<ErrorHandling />} />
+        </Routes>
+      </m.div>
+      {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
     </>
   );
 }

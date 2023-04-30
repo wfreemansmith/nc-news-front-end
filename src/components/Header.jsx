@@ -9,7 +9,7 @@ function Header() {
   return (
     <header className="header "><Link to="/" onClick={() => {
     }}>
-      <h1 className={"header-text " + theme}>THE NEWS</h1>
+      <h1 className={`${theme}header-text`}>THE NEWS</h1>
     </Link></header>
   );
 }

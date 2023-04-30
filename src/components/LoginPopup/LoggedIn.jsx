@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/User";
+import { ThemeContext } from "../../contexts/Theme";
 
 function LoggedIn({setPopUp}) {
   const { user, setUser } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext);
 
   const LogOut = () => {
     setUser({});
@@ -21,7 +23,7 @@ function LoggedIn({setPopUp}) {
           <p className="user-details">{user.username}</p>
         </section>
       <button
-      className="login__button"
+      className={"login__button " + theme}
         type="button"
         onClick={LogOut}
       >
