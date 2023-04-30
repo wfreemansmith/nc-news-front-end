@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/User";
+import { ThemeContext } from "../../contexts/Theme";
 import { getUserByUsername } from "../../utils/api";
 
 function LoginForm({setPopUp}) {
   const { setUser } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext);
 
   const [username, setUsername] = useState("tickle122");
   const [password, setPassword] = useState("password");
@@ -51,7 +53,7 @@ function LoginForm({setPopUp}) {
         }}
         type="password"
       ></input>
-      <button type="submit" className="login__button">
+      <button type="submit" className={"login__button " + theme}>
         {validation === "in-progress" ? "Logging in..." : "Login"}
       </button>
     </form>
