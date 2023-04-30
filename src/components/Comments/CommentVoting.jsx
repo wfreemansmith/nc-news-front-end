@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../contexts/Theme";
 import { patchCommentVote } from "../../utils/api";
 import { FaHeart, FaRegHeart }  from "react-icons/fa"
 
 function CommentVoting({ comment }) {
+  const { theme } = useContext(ThemeContext);
+
   const [voteButton, setVoteButton] = useState(0);
   const [voteCount, setVoteCount] = useState(comment.votes);
   const [validation, setValidation] = useState("working");
@@ -35,7 +38,7 @@ function CommentVoting({ comment }) {
         className={
           (voteButton < 0
             ? `comment-list__vote-button button--true`
-            : `comment-list__vote-button button--false`) + ` ${validation}`
+            : `comment-list__vote-button button--false`) + ` ${theme} ${validation}`
         }
         onClick={() => {
           handleVote(-1);
@@ -49,7 +52,7 @@ function CommentVoting({ comment }) {
         className={
           (voteButton > 0
             ? `comment-list__vote-button button--true`
-            : `comment-list__vote-button button--false`) + ` ${validation}`
+            : `comment-list__vote-button button--false`) + ` ${theme} ${validation}`
         }
         onClick={() => {
           handleVote(1);

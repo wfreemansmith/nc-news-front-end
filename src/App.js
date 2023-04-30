@@ -31,7 +31,7 @@ function App() {
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`App ` + theme}
+        className={`App ${theme}background ${theme}`}
         onClick={() => (popUp ? setPopUp(false) : null)}
       >
         <Header />

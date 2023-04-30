@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { postComment } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
+import { ThemeContext } from "../../contexts/Theme";
 
 function CommentForm({ comments, setComments, isLoading, setPopUp }) {
   const { article_id } = useParams();
   const { user } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext);
   const isUser = Object.keys(user).length;
 
   const [body, setBody] = useState("");
@@ -46,7 +48,7 @@ function CommentForm({ comments, setComments, isLoading, setPopUp }) {
         <div className="small-item">
           <p>Please sign in before commenting.</p>
           <button
-            className="login__button"
+            className={`login__button ${theme}`}
             onClick={() => {
               setPopUp(true);
             }}

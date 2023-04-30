@@ -1,7 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/User";
 import { ThemeContext } from "../../contexts/Theme";
+import { UserContext } from "../../contexts/User";
 import { motion as m, AnimatePresence } from "framer-motion";
 import LoginForm from "./LoginForm";
 import LoggedIn from "./LoggedIn";
@@ -30,7 +30,7 @@ function LoginPopOut({ setPopUp }) {
           }}
           transition={{ duration: 0.2, ease: "easeIn" }}
           key={"popup-window"}
-          className={"popup-window " + theme}
+          className={`popup-window ${theme}background ${theme}`}
         >
           <button
             className={"close-button function-button " + theme}

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { deleteComment } from "../../utils/api";
+import { ThemeContext } from "../../contexts/Theme";
 
 function CommentDelete({ thisComment, comments, setComments }) {
+  const { theme } = useContext(ThemeContext);
+
   const [deleting, setDeleting] = useState("working");
 
   const handleDelete = (comment_id) => {
@@ -13,11 +16,11 @@ function CommentDelete({ thisComment, comments, setComments }) {
       .catch(() => {
         setDeleting("error");
       });
-  }
+  };
 
   return (
     <button
-      className={"delete " + deleting}
+      className={`delete ${deleting} ${theme}`}
       onClick={() => {
         handleDelete(thisComment.comment_id);
       }}

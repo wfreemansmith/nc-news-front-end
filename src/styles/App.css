@@ -66,12 +66,15 @@ html {
 
 /* Styling */
 
+.background {
+  background-color: #faf9fa;
+}
+
 a {
   color: #282631;
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
-
 }
 
 .pointer {
@@ -138,12 +141,12 @@ button {
   padding: 6px;
   margin: 10px;
   font-family: "Heebo", sans-serif;
-  transition: background-color 0.5s, border-style 0.5s, color 0.5s;
+  transition: background-color 0.5s, border-style 0.5s, color 0.5s, opacity 0.5s;
 
 }
 
 button:hover {
-  background-color: white;
+  opacity: 0.8;
 }
 
 button:active {
@@ -224,6 +227,10 @@ button:active {
 
 .header-text:active {
   color: #f13333;
+}
+
+.header-text:hover {
+  color: #282631;
 }
 
 .navigation__description {
@@ -459,8 +466,6 @@ button:active {
   width: 90px;
 }
 
-/* This hover / active colour scheme is optimised for laptops / cursor-based devices, cos when you click something and you're hovering it looks bright */
-
 .comment-list__vote-button {
   width: 30px;
   height: 30px;
@@ -531,9 +536,12 @@ button:active {
 /* dark mode */
 
 .dark {
-  background-color: #282631;
   color: #faf9fa;
   border-color: #faf9fa
+}
+
+.darkbackground {
+  background-color: #282631;
 }
 
 .darkheader-text {
@@ -543,6 +551,10 @@ button:active {
   font-size: 14.8vmin;
   text-decoration: overline;
   margin: 5% 0% 0% 0%;
+}
+
+.darkheader-text:hover {
+  color: #faf9fa;
 }
 
 .darkheader-text:active {
