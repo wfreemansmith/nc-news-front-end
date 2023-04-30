@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../contexts/Theme";
 import { patchVote } from "../utils/api";
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 
 function ArticleVoting({ article }) {
+  const { theme } = useContext(ThemeContext);
+
   const [like, setLike] = useState(false);
   const [voteString, setVoteString] = useState(``);
   const [validation, setValidation] = useState("working");
@@ -19,7 +22,7 @@ function ArticleVoting({ article }) {
   const incrementVote = () => {
     const i = like ? -1 : 1;
     like ? setLike(false) : setLike(true);
-    // setLike((currLike) => !currLike  )
+
     patchVote(i, article.article_id)
     .then(() => {
         setValidation("working");
@@ -34,9 +37,9 @@ function ArticleVoting({ article }) {
     <section className="article-votes">
       <h3>{voteString}</h3>
       <button
-        className={`${validation} ${
+        className={`${
           like ? `article__like-button button--true` : `article__like-button button--false`
-        }`}
+        } ${theme} ${validation}`}
         aria-label="like"
         onClick={() => {
           incrementVote();

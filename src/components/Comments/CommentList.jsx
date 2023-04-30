@@ -19,7 +19,7 @@ function CommentList({ comments, setComments }) {
       setIsLoading(false);
     });
   }, [article_id, sortBy, setComments]);
-  //
+  
   if (isLoading) return <p>Loading comments...</p>;
 
   const dateFormat = (isoDate) => {
