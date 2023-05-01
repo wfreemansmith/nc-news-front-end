@@ -5,6 +5,7 @@ import { motion as m } from "framer-motion";
 import { slide, fade } from "../assets/transitions";
 import { ThemeContext } from "../contexts/Theme";
 import Spinner from "./Spinner";
+import ScrollToTop from "./ScrollToTop";
 
 function User() {
   const { username } = useParams();
@@ -39,7 +40,8 @@ function User() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="user-profile">
+    <div className="user-profile" id="top">
+      <ScrollToTop/>
       <m.section
         initial={fade.initial}
         animate={fade.animate}

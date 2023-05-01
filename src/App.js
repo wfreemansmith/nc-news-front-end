@@ -13,6 +13,7 @@ import FrontPage from "./components/FrontPage";
 import Article from "./components/Article";
 import User from "./components/User";
 import ErrorHandling from "./components/ErrorHandling";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -66,6 +67,7 @@ function App() {
           <Route path="*" element={<ErrorHandling />} />
         </Routes>
       </m.div>
+      <ScrollToTop />
       {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
     </>
   );

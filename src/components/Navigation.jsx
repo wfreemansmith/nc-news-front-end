@@ -13,7 +13,7 @@ function Navigation({ topicList, setDescription, description }) {
 
   return (
     <div className="navigation">
-      <h2 className="navigation__description">{description}</h2>
+      <h2 className="navigation__description">{description} </h2>
       <nav className="navigation__options">
         <label htmlFor="navigation-menu">Topic:</label>
         <select
