@@ -80,13 +80,14 @@ a {
 .pointer {
   cursor: pointer; 
   transition: color 0.4s; 
-
 }
 
 a:hover, .pointer:hover {
   color: #f13333;
 }
-
+ img, .img {
+  object-fit:cover
+ }
 
 h2 {
   font-family: "Bungee", cursive;
@@ -134,6 +135,7 @@ label {
 
 button {
   border-color: #282631;
+  color: #282631;
   background-color: transparent;
   border-style: solid;
   border-width: 3px;
@@ -353,15 +355,18 @@ button:active {
 
 .single-article {
   display: flex;
-  list-style: none;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
   align-items: center;
-  justify-content: center;
 }
 
 .article-card {
+  display: grid;
+  justify-items: center;
+}
+
+.article-card__article {
   display: flex;
   max-width: 592px;
   padding: 14px;
@@ -369,9 +374,6 @@ button:active {
   width: 80vw;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
 }
 
 .article-card__title {
@@ -383,6 +385,8 @@ button:active {
 .article-card__img {
   width: 100%;
   max-width: 800px;
+  height: 70%;
+  max-height: 570px;
 }
 
 .article-card__author {
@@ -399,6 +403,7 @@ button:active {
 .article-card__author-avatar {
   width: 45px;
   height: 45px;
+  background-color: white;
   border-color: #282631;
   border-width: 2px;
   border-style: solid;

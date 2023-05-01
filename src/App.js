@@ -2,6 +2,7 @@ import "./styles/App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { motion as m } from "framer-motion";
+import { fade } from "./assets/transitions";
 import { ThemeContext } from "./contexts/Theme";
 import { getTopics } from "./utils/api";
 import Header from "./components/Header";
@@ -29,8 +30,9 @@ function App() {
   return (
     <>
       <m.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={fade.initial}
+        animate={fade.animate}
+        transition={fade.transition}
         className={`App ${theme}background ${theme}`}
         onClick={() => (popUp ? setPopUp(false) : null)}
       >
