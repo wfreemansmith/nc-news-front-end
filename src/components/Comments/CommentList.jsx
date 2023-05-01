@@ -36,6 +36,7 @@ function CommentList({ comments, setComments }) {
         animate={slide.animate}
         exit={slide.exit}
         transition={slide.transition}
+        key={"comments"}
       >
         <h3>Comments:</h3>
         <select

@@ -47,6 +47,7 @@ function ArticleCard({ isLoading, setIsLoading }) {
         exit={slide.exit}
         transition={slide.transition}
         className="article-card"
+        key="article"
       >
         <section>
           <LazyLoadImage
