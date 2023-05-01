@@ -3,7 +3,7 @@ import ArticleCard from "./ArticleCard";
 import CommentForm from "./Comments/CommentForm";
 import CommentList from "./Comments/CommentList";
 
-function Article({setPopUp}) {
+function Article({ setPopUp }) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,10 +13,11 @@ function Article({setPopUp}) {
       <CommentForm
         comments={comments}
         setComments={setComments}
-        isLoading={isLoading}
+        articleLoading={isLoading}
         setPopUp={setPopUp}
       />
       <CommentList
+        articleLoading={isLoading}
         comments={comments}
         setComments={setComments}
       />
