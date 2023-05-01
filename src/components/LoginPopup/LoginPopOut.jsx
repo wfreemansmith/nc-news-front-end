@@ -29,7 +29,7 @@ function LoginPopOut({ setPopUp }) {
             opacity: 0,
           }}
           transition={{ duration: 0.2, ease: "easeIn" }}
-          key={"popup-window"}
+          key="popup-window"
           className={`popup-window ${theme}background ${theme}`}
         >
           <button

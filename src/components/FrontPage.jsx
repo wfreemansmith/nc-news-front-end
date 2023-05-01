@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, useSearchParams, useNavigate, Link } from "react-router-dom";
+import { motion as m, AnimatePresence } from "framer-motion";
+import { slide } from "../assets/transitions";
 import { getArticles } from "../utils/api";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { ThemeContext } from "../contexts/Theme";
 
 function FrontPage({ topicList, setDescription }) {
@@ -76,7 +75,12 @@ function FrontPage({ topicList, setDescription }) {
         order
       </section>
 
-      <ul className="article-list">
+      <m.ul 
+              initial={slide.initial}
+              animate={slide.animate}
+              exit={slide.exit}
+              transition={slide.transition}
+              className="article-list">
         {articleList.map((article) => {
           return (
             <li className="small-item" key={article.article_id}>
@@ -110,7 +114,7 @@ function FrontPage({ topicList, setDescription }) {
             </li>
           );
         })}
-      </ul>
+      </m.ul>
     </div>
   );
 }

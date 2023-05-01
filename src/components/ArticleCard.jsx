@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { motion as m, AnimatePresence } from "framer-motion";
+import { slide } from "../assets/transitions";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css'
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 
-function ArticleCard({isLoading, setIsLoading}) {
+function ArticleCard({ isLoading, setIsLoading }) {
   const { article_id } = useParams();
 
   const [article, setArticle] = useState([]);
@@ -18,14 +22,17 @@ function ArticleCard({isLoading, setIsLoading}) {
     getArticleById(article_id)
       .then(({ article }) => {
         setArticle(article);
+        console.log("article retrieved");
         return getUserByUsername(article.author);
       })
       .then(({ user }) => {
+        console.log("user  retrieved");
         setAuthor(user);
         setIsLoading(false);
-      }).catch((err) => {
-        setErrCode(err.response.status)
-        setErrMsg(err.response.data.msg)
+      })
+      .catch((err) => {
+        setErrCode(err.response.status);
+        setErrMsg(err.response.data.msg);
       });
   }, [article_id, setIsLoading]);
 
@@ -33,34 +40,49 @@ function ArticleCard({isLoading, setIsLoading}) {
   if (isLoading) return <p>Loading article...</p>;
 
   return (
-    <>
-      <section>
-      <img
-          className="article-card__img"
-          src={article.article_img_url}
-          alt={article.title}
-        ></img>
-        <h2 className="article-card__title">{article.title}</h2>
+    <AnimatePresence>
+      <m.div
+        initial={slide.initial}
+        animate={slide.animate}
+        exit={slide.exit}
+        transition={slide.transition}
+        className="article-card"
+        key="article"
+      >
+        <section>
+          <LazyLoadImage
+            className="article-card__img img"
+            src={article.article_img_url}
+            alt={article.title}
+          ></LazyLoadImage>
+          <h2 className="article-card__title">{article.title}</h2>
         </section>
-        <article  className="article-card">
-        <div className="article-card__author">
-        <Link to={`/users/${article.author}`}><img
-            className="article-card__author-avatar"
-            src={author.avatar_url}
-            alt={`Avatar for author ${article.author}`}
-          ></img></Link>
-          <p className="user-details">
-            <Link to={`/users/${article.author}`} className="topic-link">{article.author}</Link>
-          </p>
-          <p className="user-details">
-            <Link to={`/topics/${article.topic}`} className="topic-link">{article.topic}</Link>
-          </p>
-        </div>
-        <p>{article.body}</p>
+        <article className="article-card__article">
+          <div className="article-card__author">
+            <Link to={`/users/${article.author}`}>
+              <img
+                className="article-card__author-avatar img"
+                src={author.avatar_url}
+                alt={`Avatar for author ${article.author}`}
+              ></img>
+            </Link>
+            <p className="user-details">
+              <Link to={`/users/${article.author}`} className="topic-link">
+                {article.author}
+              </Link>
+            </p>
+            <p className="user-details">
+              <Link to={`/topics/${article.topic}`} className="topic-link">
+                {article.topic}
+              </Link>
+            </p>
+          </div>
+          <p>{article.body}</p>
         </article>
-      
-      <ArticleVoting article={article}/>
-    </>
+
+        <ArticleVoting article={article} />
+      </m.div>
+    </AnimatePresence>
   );
 }
 

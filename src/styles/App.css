@@ -80,22 +80,23 @@ a {
 .pointer {
   cursor: pointer; 
   transition: color 0.4s; 
-
 }
 
 a:hover, .pointer:hover {
   color: #f13333;
 }
-
+ img, .img {
+  object-fit:cover
+ }
 
 h2 {
-  font-family: "Bungee", cursive;
+  font-family: "Bungee", sans-serif ;
   font-size: 4.5vmin;
   margin: 0px;
 }
 
 h3 {
-  font-family: "Bungee", cursive;
+  font-family: "Bungee", sans-serif ;
   margin: 10px 0px;
 }
 
@@ -110,7 +111,7 @@ label {
 /* Topic links have different color props in small and large screen. This is because hover is a feature for cursors and not for touchscreens! */
 
 .topic-link {
-  font-family: "Bungee", cursive;
+  font-family: "Bungee", sans-serif ;
   font-weight: normal;
   font-size: 14px;
   background-color: #f13333;
@@ -134,6 +135,7 @@ label {
 
 button {
   border-color: #282631;
+  color: #282631;
   background-color: transparent;
   border-style: solid;
   border-width: 3px;
@@ -206,6 +208,7 @@ button:active {
   margin: 0px;
   align-self: flex-start;
   justify-self: end;
+  z-index: 1;
 }
 
 .function-button:hover {
@@ -219,7 +222,7 @@ button:active {
 /* Header & Navigation */
 
 .header-text {
-  font-family: "Bungee Shade", cursive;
+  font-family: "Bungee Shade", sans-serif ;
   font-size: 14.8vmin;
   text-decoration: overline;
   margin: 5% 0% 0% 0%;
@@ -353,29 +356,30 @@ button:active {
 
 .single-article {
   display: flex;
-  list-style: none;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
   align-items: center;
-  justify-content: center;
 }
 
 .article-card {
+  display: grid;
+  justify-items: center;
+}
+
+.article-card__article {
   display: flex;
-  max-width: 592px;
-  padding: 14px;
+  max-width: 800px;
+  padding: 14px 0px;
   margin: 0px 4vw;
   width: 80vw;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
+  text-align: left;
 }
 
 .article-card__title {
-  font-family: "Bungee Shade", cursive;
+  font-family: "Bungee Shade", sans-serif ;
   font-size: 6vmin;
   max-width: 900px;
 }
@@ -383,6 +387,8 @@ button:active {
 .article-card__img {
   width: 100%;
   max-width: 800px;
+  height: 70%;
+  max-height: 570px;
 }
 
 .article-card__author {
@@ -399,6 +405,7 @@ button:active {
 .article-card__author-avatar {
   width: 45px;
   height: 45px;
+  background-color: white;
   border-color: #282631;
   border-width: 2px;
   border-style: solid;
@@ -520,7 +527,7 @@ button:active {
 /* Error handling */
 
 .err-code {
-  font-family: "Bungee Shade", cursive;
+  font-family: "Bungee Shade", sans-serif ;
   font-size: 23vmin;
   font-weight: bold;
   margin: 0px;
@@ -528,7 +535,7 @@ button:active {
 }
 
 .err-msg {
-  font-family: "Bungee", cursive;
+  font-family: "Bungee", sans-serif ;
   font-size: 4.5vmin;
   margin: 0px;
 }
@@ -547,7 +554,7 @@ button:active {
 .darkheader-text {
   background-color: transparent;
   color: #faf9fa;
-  font-family: "Bungee Shade", cursive;
+  font-family: "Bungee Shade", sans-serif ;
   font-size: 14.8vmin;
   text-decoration: overline;
   margin: 5% 0% 0% 0%;
