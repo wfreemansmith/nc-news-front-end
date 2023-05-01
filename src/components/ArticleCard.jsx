@@ -6,6 +6,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
+import Spinner from "./Spinner"
+import placeholder from "../assets/faf9fa.png"
 
 function ArticleCard({ isLoading, setIsLoading }) {
   const { article_id } = useParams();
@@ -22,13 +24,11 @@ function ArticleCard({ isLoading, setIsLoading }) {
     getArticleById(article_id)
       .then(({ article }) => {
         setArticle(article);
-        console.log("article retrieved");
         return getUserByUsername(article.author);
       })
       .then(({ user }) => {
-        console.log("user  retrieved");
         setAuthor(user);
-        setIsLoading(false);
+        setIsLoading(false); 
       })
       .catch((err) => {
         setErrCode(err.response.status);
@@ -37,7 +37,7 @@ function ArticleCard({ isLoading, setIsLoading }) {
   }, [article_id, setIsLoading]);
 
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
-  if (isLoading) return <p>Loading article...</p>;
+  if (isLoading) return <Spinner/>;
 
   return (
     <AnimatePresence>
@@ -54,7 +54,8 @@ function ArticleCard({ isLoading, setIsLoading }) {
             className="article-card__img img"
             src={article.article_img_url}
             alt={article.title}
-          ></LazyLoadImage>
+            placeholderSrc={placeholder}
+          />
           <h2 className="article-card__title">{article.title}</h2>
         </section>
         <article className="article-card__article">

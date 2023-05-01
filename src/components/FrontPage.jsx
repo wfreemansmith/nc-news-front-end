@@ -4,6 +4,7 @@ import { motion as m, AnimatePresence } from "framer-motion";
 import { slide } from "../assets/transitions";
 import { getArticles } from "../utils/api";
 import { ThemeContext } from "../contexts/Theme";
+import Spinner from "./Spinner";
 
 function FrontPage({ topicList, setDescription }) {
   const { topic } = useParams();
@@ -39,7 +40,7 @@ function FrontPage({ topicList, setDescription }) {
   }, [topic, searchParams,topicList, setDescription]);
 
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
 
   return (
     <div className="front-page">

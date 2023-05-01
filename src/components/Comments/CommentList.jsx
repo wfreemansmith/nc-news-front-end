@@ -1,18 +1,19 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { motion as m, AnimatePresence } from "framer-motion";
+import { slide } from "../../assets/transitions";
 import { getCommentsByArticleId } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
-import { slide } from "../../assets/transitions";
 import CommentDelete from "./CommentDelete";
 import CommentVoting from "./CommentVoting";
+import Spinner from "../Spinner";
 
-function CommentList({ comments, setComments }) {
+function CommentList({ comments, setComments, articleLoading }) {
   const { article_id } = useParams();
   const { user } = useContext(UserContext);
-
+  
   const [sortBy, setSortBy] = useState("created_at");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setIsLoading(true);
@@ -22,7 +23,8 @@ function CommentList({ comments, setComments }) {
     });
   }, [article_id, sortBy, setComments]);
 
-  if (isLoading) return <p>Loading comments...</p>;
+  if (articleLoading) return
+  if (isLoading) return <Spinner/> 
 
   const dateFormat = (isoDate) => {
     const date = new Date(isoDate);
@@ -76,6 +78,7 @@ function CommentList({ comments, setComments }) {
             );
           })}
         </ul>
+        <button onClick={() => {window.scrollTo({top: 0, behavior: "smooth"})}}>Hello</button>
       </m.div>
     </AnimatePresence>
   );

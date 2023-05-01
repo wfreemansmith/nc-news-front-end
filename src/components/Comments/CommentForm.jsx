@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { motion as m, AnimatePresence } from "framer-motion";
+import { slide } from "../../assets/transitions";
 import { postComment } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
 import { ThemeContext } from "../../contexts/Theme";
 
-function CommentForm({ comments, setComments, isLoading, setPopUp }) {
+function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
   const { article_id } = useParams();
   const { user } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
@@ -13,7 +15,7 @@ function CommentForm({ comments, setComments, isLoading, setPopUp }) {
   const [body, setBody] = useState("");
   const [validation, setValidation] = useState("valid");
 
-  if (isLoading) return;
+  if (articleLoading) return;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,47 +45,54 @@ function CommentForm({ comments, setComments, isLoading, setPopUp }) {
   };
 
   return (
-    <>
-      {!isUser ? (
-        <div className="small-item">
-          <p>Please sign in before commenting.</p>
-          <button
-            className={`login__button ${theme}`}
-            onClick={() => {
-              setPopUp(true);
-            }}
-          >
-            Log in
-          </button>
-        </div>
-      ) : (
-        <form className="small-item comment-form" onSubmit={handleSubmit}>
-          <label htmlFor="comment-form__input">
-            Commenting as <strong>{user.username}</strong>
-          </label>
-          <textarea
-            id="comment-form__input"
-            className={validation}
-            value={body}
-            onChange={(event) => {
-              setValidation("valid");
-              setBody(event.target.value);
-            }}
-          ></textarea>
-          <button className={validation} type="submit">
-            {validation === "error invalid"
-              ? "Field cannot be blank"
-              : validation === "error other"
-              ? "Something went wrong"
-              : validation === "in-progress"
-              ? "Posting..."
-              : validation === "success"
-              ? "Success!"
-              : "Post"}
-          </button>
-        </form>
-      )}
-    </>
+    <AnimatePresence>
+      <m.div
+      initial={slide.initial}
+      animate={slide.animate}
+      exit={slide.exit}
+      transition={slide.transition}
+      key={"comment-form"}>
+        {!isUser ? (
+          <div className="small-item">
+            <p>Please sign in before commenting.</p>
+            <button
+              className={`login__button ${theme}`}
+              onClick={() => {
+                setPopUp(true);
+              }}
+            >
+              Log in
+            </button>
+          </div>
+        ) : (
+          <form className="small-item comment-form" onSubmit={handleSubmit}>
+            <label htmlFor="comment-form__input">
+              Commenting as <strong>{user.username}</strong>
+            </label>
+            <textarea
+              id="comment-form__input"
+              className={validation}
+              value={body}
+              onChange={(event) => {
+                setValidation("valid");
+                setBody(event.target.value);
+              }}
+            ></textarea>
+            <button className={validation} type="submit">
+              {validation === "error invalid"
+                ? "Field cannot be blank"
+                : validation === "error other"
+                ? "Something went wrong"
+                : validation === "in-progress"
+                ? "Posting..."
+                : validation === "success"
+                ? "Success!"
+                : "Post"}
+            </button>
+          </form>
+        )}
+      </m.div>
+    </AnimatePresence>
   );
 }
 
