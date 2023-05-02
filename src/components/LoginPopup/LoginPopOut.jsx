@@ -2,34 +2,20 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/Theme";
 import { UserContext } from "../../contexts/User";
-import { motion as m, AnimatePresence } from "framer-motion";
+import Transition from "../Transition";
 import LoginForm from "./LoginForm";
 import LoggedIn from "./LoggedIn";
 
-function LoginPopOut({ setPopUp }) {
+function LoginPopOut({ popUp, setPopUp}) {
   const { user } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
   const isUser = Object.keys(user).length;
 
   return (
     <div className="container">
-      <AnimatePresence>
-        <m.div
-          initial={{
-            scale: 0.9,
-            opacity: 0,
-            filter: "blur(2px)",
-          }}
-          animate={{
-            scale: 1,
-            opacity: 1,
-            filter: "blur(0px)",
-          }}
-          exit={{
-            opacity: 0,
-          }}
-          transition={{ duration: 0.2, ease: "easeIn" }}
-          key="popup-window"
+      <Transition option="popup">
+        <div
+          key={popUp}
           className={`popup-window ${theme}background ${theme}`}
         >
           <button
@@ -45,8 +31,8 @@ function LoginPopOut({ setPopUp }) {
           ) : (
             <LoggedIn setPopUp={setPopUp} />
           )}
-        </m.div>
-      </AnimatePresence>
+        </div>
+      </Transition>
     </div>
   );
 }

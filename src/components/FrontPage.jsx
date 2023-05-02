@@ -5,13 +5,12 @@ import {
   useNavigate,
   Link,
 } from "react-router-dom";
-import { motion as m, AnimatePresence } from "framer-motion";
-import { slide } from "../assets/transitions";
 import { getArticles } from "../utils/api";
 import { ThemeContext } from "../contexts/Theme";
 import Spinner from "./Spinner";
+import Transition from "./Transition";
 
-function FrontPage({ topicList, setDescription }) {
+function FrontPage({ topicList, setDescription, description }) {
   const { topic } = useParams();
   const { theme } = useContext(ThemeContext);
 
@@ -80,14 +79,8 @@ function FrontPage({ topicList, setDescription }) {
         </select>{" "}
         order
       </section>
-      <AnimatePresence>
-        <m.ul
-          initial={slide.initial}
-          animate={slide.animate}
-          exit={slide.exit}
-          transition={slide.transition}
-          className="article-list"
-        >
+      <Transition option={description ? "leftright" : "slide"}>
+        <ul className="article-list">
           {articleList.map((article) => {
             return (
               <li className="small-item" key={article.article_id}>
@@ -128,8 +121,8 @@ function FrontPage({ topicList, setDescription }) {
               </li>
             );
           })}
-        </m.ul>
-      </AnimatePresence>  
+        </ul>
+      </Transition>
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { motion as m, AnimatePresence } from "framer-motion";
-import { slide } from "../assets/transitions";
+import { useParams, useNavigate, Link} from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { getArticleById, getUserByUsername } from "../utils/api";
 import ArticleVoting from "./ArticleVoting";
 import Spinner from "./Spinner";
+import Transition from "./Transition";
 import placeholder from "../assets/faf9fa.png";
 import ScrollToTop from "./ScrollToTop";
 
@@ -37,24 +36,14 @@ function ArticleCard({ isLoading, setIsLoading }) {
       });
   }, [article_id, setIsLoading]);
 
-  // useEffect(() => {
-  //   const top = document.getElementById("top");
-  //   top.scrollIntoView({ behavior: "smooth", block: "start" });
-  // }, [isLoading]);
-
   if (errCode) navigate("/error", { state: { errCode, errMsg } });
   if (isLoading) return <Spinner />;
 
   return (
-    <AnimatePresence>
-      <ScrollToTop/>
-      <m.div
-        initial={slide.initial}
-        animate={slide.animate}
-        exit={slide.exit}
-        transition={slide.transition}
+    <Transition option={"slide"}>
+      <ScrollToTop />
+      <div
         className="article-card"
-        key="article"
       >
         <section id="top">
           <LazyLoadImage
@@ -89,8 +78,8 @@ function ArticleCard({ isLoading, setIsLoading }) {
         </article>
 
         <ArticleVoting article={article} />
-      </m.div>
-    </AnimatePresence>
+      </div>
+    </Transition>
   );
 }
 

@@ -1,8 +1,6 @@
 import "./styles/App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { motion as m } from "framer-motion";
-import { fade } from "./assets/transitions";
 import { ThemeContext } from "./contexts/Theme";
 import { getTopics } from "./utils/api";
 import Header from "./components/Header";
@@ -14,9 +12,12 @@ import Article from "./components/Article";
 import User from "./components/User";
 import ErrorHandling from "./components/ErrorHandling";
 import ScrollToTop from "./components/ScrollToTop";
+import Transition from "./components/Transition";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const { theme } = useContext(ThemeContext);
+  const location = useLocation();
 
   const [topicList, setTopicList] = useState([]);
   const [description, setDescription] = useState("");
@@ -30,45 +31,49 @@ function App() {
 
   return (
     <>
-      <m.div
-        initial={fade.initial}
-        animate={fade.animate}
-        transition={fade.transition}
-        className={`App ${theme}background ${theme}`}
-        onClick={() => (popUp ? setPopUp(false) : null)}
-      >
-        <Header />
-        <Login setPopUp={setPopUp} />
-        <Navigation
-          topicList={topicList}
-          setDescription={setDescription}
-          description={description}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={<FrontPage setDescription={setDescription} />}
+      <Transition option={"fade"}>
+        <div
+          className={`App ${theme}background ${theme}`}
+          onClick={() => (popUp ? setPopUp(false) : null)}
+        >
+          <Header />
+          <Login setPopUp={setPopUp} />
+          <Navigation
+            topicList={topicList}
+            setDescription={setDescription}
+            description={description}
           />
-          <Route
-            path="/articles/:article_id"
-            element={<Article setPopUp={setPopUp} />}
-          />
-          <Route path="/users/:username" element={<User />} />
-          <Route
-            path="/topics/:topic"
-            element={
-              <FrontPage
-                topicList={topicList}
-                setDescription={setDescription}
+          <AnimatePresence mode="wait">
+            <Routes key={location.pathname + location.search} location={location}>
+              <Route
+                path="/"
+                element={<FrontPage setDescription={setDescription} />}
               />
-            }
-          />
-          <Route path="/error" element={<ErrorHandling />} />
-          <Route path="*" element={<ErrorHandling />} />
-        </Routes>
-      </m.div>
+              <Route
+                path="/articles/:article_id"
+                element={<Article setPopUp={setPopUp} />}
+              />
+              <Route path="/users/:username" element={<User />} />
+              <Route
+                path="/topics/:topic"
+                element={
+                  <FrontPage
+                    topicList={topicList}
+                    setDescription={setDescription}
+                    description={description}
+                  />
+                }
+              />
+              <Route path="/error" element={<ErrorHandling />} />
+              <Route path="*" element={<ErrorHandling />} />
+            </Routes>
+          </AnimatePresence>
+        </div>
+      </Transition>
       <ScrollToTop />
-      {popUp ? <LoginPopOut setPopUp={setPopUp} /> : null}
+      <AnimatePresence>
+        {popUp ? <LoginPopOut popUp={popUp} setPopUp={setPopUp} /> : null}
+      </AnimatePresence>
     </>
   );
 }
