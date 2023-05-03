@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import Transition from "./Transition";
 
 function Navigation({ topicList, setDescription, description }) {
   const navigate = useNavigate();
@@ -10,10 +12,15 @@ function Navigation({ topicList, setDescription, description }) {
     );
   };
 
-
   return (
     <div className="navigation">
-      <h2 className="navigation__description">{description} </h2>
+      <AnimatePresence mode="wait">
+        <Transition option="leftright" key={description}>
+          <h2 className="navigation__description">
+            {description}
+          </h2>
+        </Transition>
+      </AnimatePresence>
       <nav className="navigation__options">
         <label htmlFor="navigation-menu">Topic:</label>
         <select

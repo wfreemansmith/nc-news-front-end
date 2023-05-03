@@ -1,19 +1,18 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { motion as m, AnimatePresence } from "framer-motion";
-import { slide } from "../../assets/transitions";
 import { getCommentsByArticleId } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
 import CommentDelete from "./CommentDelete";
 import CommentVoting from "./CommentVoting";
 import Spinner from "../Spinner";
+import Transition from "../Transition";
 
 function CommentList({ comments, setComments, articleLoading }) {
   const { article_id } = useParams();
   const { user } = useContext(UserContext);
-  
+
   const [sortBy, setSortBy] = useState("created_at");
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,8 +22,8 @@ function CommentList({ comments, setComments, articleLoading }) {
     });
   }, [article_id, sortBy, setComments]);
 
-  if (articleLoading) return
-  if (isLoading) return <Spinner/> 
+  if (articleLoading) return;
+  if (isLoading) return <Spinner />;
 
   const dateFormat = (isoDate) => {
     const date = new Date(isoDate);
@@ -32,14 +31,8 @@ function CommentList({ comments, setComments, articleLoading }) {
   };
 
   return (
-    <AnimatePresence>
-      <m.div
-        initial={slide.initial}
-        animate={slide.animate}
-        exit={slide.exit}
-        transition={slide.transition}
-        key={"comments"}
-      >
+    <Transition option="slide">
+      <div>
         <h3>Comments:</h3>
         <select
           value={sortBy}
@@ -78,9 +71,15 @@ function CommentList({ comments, setComments, articleLoading }) {
             );
           })}
         </ul>
-        <button onClick={() => {window.scrollTo({top: 0, behavior: "smooth"})}}>Hello</button>
-      </m.div>
-    </AnimatePresence>
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          Hello
+        </button>
+      </div>
+    </Transition>
   );
 }
 

@@ -1,10 +1,9 @@
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { motion as m, AnimatePresence } from "framer-motion";
-import { slide } from "../../assets/transitions";
 import { postComment } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
 import { ThemeContext } from "../../contexts/Theme";
+import Transition from "../Transition"
 
 function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
   const { article_id } = useParams();
@@ -45,13 +44,7 @@ function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
   };
 
   return (
-    <AnimatePresence>
-      <m.div
-      initial={slide.initial}
-      animate={slide.animate}
-      exit={slide.exit}
-      transition={slide.transition}
-      key={"comment-form"}>
+<Transition option="slide">
         {!isUser ? (
           <div className="small-item">
             <p>Please sign in before commenting.</p>
@@ -91,8 +84,7 @@ function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
             </button>
           </form>
         )}
-      </m.div>
-    </AnimatePresence>
+      </Transition>
   );
 }
 
