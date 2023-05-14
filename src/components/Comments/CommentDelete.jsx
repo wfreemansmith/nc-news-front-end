@@ -11,9 +11,7 @@ function CommentDelete({ thisComment, comments, setComments }) {
     setDeleting("in-progress");
     deleteComment(comment_id)
       .then(() => {
-        console.log(thisComment)
         setComments(comments.filter((comment) => comment !== thisComment));
-        console.log("filtered comments")
       })
       .catch(() => {
         setDeleting("error");

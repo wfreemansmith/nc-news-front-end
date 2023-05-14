@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { postComment } from "../../utils/api";
 import { UserContext } from "../../contexts/User";
 import { ThemeContext } from "../../contexts/Theme";
-import Transition from "../Transition"
+import Transition from "../Transition";
 
 function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
   const { article_id } = useParams();
@@ -39,52 +39,51 @@ function CommentForm({ comments, setComments, articleLoading, setPopUp }) {
       })
       .catch((err) => {
         setValidation("error other");
-        console.log(err);
       });
   };
 
   return (
-<Transition option="slide">
-        {!isUser ? (
-          <div className="small-item">
-            <p>Please sign in before commenting.</p>
-            <button
-              className={`login__button ${theme}`}
-              onClick={() => {
-                setPopUp(true);
-              }}
-            >
-              Log in
-            </button>
-          </div>
-        ) : (
-          <form className="small-item comment-form" onSubmit={handleSubmit}>
-            <label htmlFor="comment-form__input">
-              Commenting as <strong>{user.username}</strong>
-            </label>
-            <textarea
-              id="comment-form__input"
-              className={validation}
-              value={body}
-              onChange={(event) => {
-                setValidation("valid");
-                setBody(event.target.value);
-              }}
-            ></textarea>
-            <button className={validation} type="submit">
-              {validation === "error invalid"
-                ? "Field cannot be blank"
-                : validation === "error other"
-                ? "Something went wrong"
-                : validation === "in-progress"
-                ? "Posting..."
-                : validation === "success"
-                ? "Success!"
-                : "Post"}
-            </button>
-          </form>
-        )}
-      </Transition>
+    <Transition option="slide">
+      {!isUser ? (
+        <div className="small-item">
+          <p>Please sign in before commenting.</p>
+          <button
+            className={`login__button ${theme}`}
+            onClick={() => {
+              setPopUp(true);
+            }}
+          >
+            Log in
+          </button>
+        </div>
+      ) : (
+        <form className="small-item comment-form" onSubmit={handleSubmit}>
+          <label htmlFor="comment-form__input">
+            Commenting as <strong>{user.username}</strong>
+          </label>
+          <textarea
+            id="comment-form__input"
+            className={validation}
+            value={body}
+            onChange={(event) => {
+              setValidation("valid");
+              setBody(event.target.value);
+            }}
+          ></textarea>
+          <button className={validation} type="submit">
+            {validation === "error invalid"
+              ? "Field cannot be blank"
+              : validation === "error other"
+              ? "Something went wrong"
+              : validation === "in-progress"
+              ? "Posting..."
+              : validation === "success"
+              ? "Success!"
+              : "Post"}
+          </button>
+        </form>
+      )}
+    </Transition>
   );
 }
 

@@ -35,6 +35,7 @@ function App() {
         <div
           className={`App ${theme}background ${theme}`}
           onClick={() => (popUp ? setPopUp(false) : null)}
+          id="top"
         >
           <Header />
           <Login setPopUp={setPopUp} />
