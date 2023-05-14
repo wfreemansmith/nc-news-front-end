@@ -6,6 +6,7 @@ import CommentDelete from "./CommentDelete";
 import CommentVoting from "./CommentVoting";
 import Spinner from "../Spinner";
 import Transition from "../Transition";
+import TopButton from "../TopButton";
 
 function CommentList({ comments, setComments, articleLoading }) {
   const { article_id } = useParams();
@@ -71,14 +72,8 @@ function CommentList({ comments, setComments, articleLoading }) {
             );
           })}
         </ul>
-        <button
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          Hello
-        </button>
       </div>
+      <TopButton/>
     </Transition>
   );
 }

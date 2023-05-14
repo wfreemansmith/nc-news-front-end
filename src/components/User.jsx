@@ -5,6 +5,7 @@ import { ThemeContext } from "../contexts/Theme";
 import Spinner from "./Spinner";
 import ScrollToTop from "./ScrollToTop";
 import Transition from "./Transition";
+import TopButton from "./TopButton";
 
 function User() {
   const { username } = useParams();
@@ -39,7 +40,7 @@ function User() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="user-profile" id="top">
+    <div className="user-profile">
       <ScrollToTop />
       <Transition option="fade">
         <section className="user-profile__user-info">
@@ -86,6 +87,7 @@ function User() {
             })}
           </ul>
         </section>
+        <TopButton/>
       </Transition>
     </div>
   );

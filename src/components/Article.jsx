@@ -8,7 +8,7 @@ function Article({ setPopUp }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="single-article" id="top">
+    <div className="single-article">
       <ArticleCard isLoading={isLoading} setIsLoading={setIsLoading} />
       <CommentForm
         comments={comments}

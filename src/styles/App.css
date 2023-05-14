@@ -63,7 +63,7 @@ html {
 .spinner-container {
   display: grid;
   grid-area: 3 / 1 / 4 / 4;
-  justify-items: center
+  justify-items: center;
 }
 
 /* Styling */
