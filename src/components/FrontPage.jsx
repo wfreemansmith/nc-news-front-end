@@ -9,7 +9,6 @@ import { getArticles } from "../utils/api";
 import { ThemeContext } from "../contexts/Theme";
 import Spinner from "./Spinner";
 import Transition from "./Transition";
-import TopButton from "./TopButton";
 
 function FrontPage({ topicList, setDescription, description }) {
   const { topic } = useParams();
