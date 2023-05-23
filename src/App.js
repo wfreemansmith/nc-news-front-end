@@ -14,6 +14,7 @@ import ErrorHandling from "./components/ErrorHandling";
 import ScrollToTop from "./components/ScrollToTop";
 import Transition from "./components/Transition";
 import { AnimatePresence } from "framer-motion";
+import TopButton from "./components/TopButton";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -71,6 +72,7 @@ function App() {
           </AnimatePresence>
         </div>
       </Transition>
+      <TopButton />
       <ScrollToTop />
       <AnimatePresence>
         {popUp ? <LoginPopOut popUp={popUp} setPopUp={setPopUp} /> : null}

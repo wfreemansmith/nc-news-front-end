@@ -123,7 +123,6 @@ function FrontPage({ topicList, setDescription, description }) {
             );
           })}
         </ul>
-        <TopButton/>
       </Transition>
     </div>
   );

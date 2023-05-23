@@ -72,13 +72,13 @@ const openApi = axios.create({
   baseURL: "https://api.openai.com/v1/",
   headers: {
     Application: "application/json",
-    Authorisation: `Bearer ${openApiKey}`,
+    Authorisation: `Bearer ${openAIApiKey}`,
     "OpenAI-Organization": "org-bnp0afpJ02bzWExr6F7S5goX",
   },
 });
 
 export const postPrompt = (topic, title) => {
-  if (!configuration.openApiKey) {
+  if (!openAIApiKey) {
     console.error(`No API key was found, please see README.md`);
   }
 
@@ -90,12 +90,12 @@ export const postPrompt = (topic, title) => {
     temperature: 0.5,
   };
 
-  return api
+  return openApi
     .post(`completions`, params)
     .then((res) => {
       return res.data.choices[0].text;
     })
     .catch((err) => {
-      console.error(`An error occurred: ${error.message}`);
+      console.error(`An error occurred: ${err.message}`);
     });
 };

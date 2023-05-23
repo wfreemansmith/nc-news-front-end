@@ -66,6 +66,20 @@ html {
   justify-items: center;
 }
 
+.top-button {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  background: rgba(250, 249, 250, 0.7);
+  font-size: 4vh;
+  height: 75px;
+  width: 75px;
+  padding: 10px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 /* Styling */
 
 .background {
